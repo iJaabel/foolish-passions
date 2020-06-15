@@ -1,0 +1,121 @@
+/* :root {
+  --fp-blue: rgb(65, 89, 133);
+  --fp-nat-blue: rgb(69, 118, 162);
+  --fp-yellow: rgb(229, 189, 58);
+  --fp-grey: rgb(188, 204, 213);
+  --fp-black: rgb(58, 58, 58);
+} */
+
+/* html,
+body {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  background-color: var(--fp-grey);
+  color: var(--fp-black);
+  /* margin: 0 auto; 
+} */
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  width: 100%;
+}
+
+/* --- --- */
+
+.header {
+  color: white;
+  font-size: 50px;
+}
+
+.section {
+  height: 50%;
+  background: #293744;
+  color: #899eb5;
+}
+
+.scene {
+  height: 100%;
+  width: 100%;
+  background: #eaeaea;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.viewer {
+  height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 200px;
+  margin-top: 400px;
+  max-width: 200px;
+  width: 100%;
+  background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/210284/doodle-sprite.png);
+  background-repeat: no-repeat;
+  background-position: 0 50%;
+  padding: 130px 0 200px 0;
+}
+
+/* --- --- */
+
+/* @media (max-width: 720px) {
+  :root {
+    --wid-sz: 420px;
+  }
+
+  html,
+  body {
+    background-color: black;
+    height: 100%;
+  }
+
+  body {
+    width: 100%;
+  }
+
+  /* --- --- */
+
+/* .app {
+      display: grid;
+      grid-gap: 5px;
+      grid-template-rows: repeat(auto-fill, minmax(var(--wid-sz), 1fr));
+    } */
+
+/* .content {
+      background-color: red;
+    } 
+
+  .container {
+    height: 100%;
+    width: 100%;
+  }
+
+  /* --- --- 
+
+  .header {
+    background-color: var(--fp-blue);
+    color: var(--fp-yellow);
+    font-size: 50px;
+  }
+
+  .landing {
+    background-color: pink;
+  }
+
+  .feed {
+    background-color: orange;
+  }
+
+  .footer {
+    background-color: yellow;
+  }
+
+  /* --- --- 
+} */
