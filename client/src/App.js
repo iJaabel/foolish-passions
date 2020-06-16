@@ -5,52 +5,92 @@ import Header from "./components/Header";
 import "./style.css";
 
 export default function App() {
+  const randomNumberBetween = (min, max) =>
+    Math.floor(min + Math.random() * (max + 1 - min));
+
   gsap.registerPlugin(ScrollTrigger);
 
-  let frame_count = 9,
-    offset_value = 100;
+  // const frame_count = 9,
+  //   offset_value = 100;
+
+  // let guySipping = {
+  //   backgroundPosition: `${-offset_value * frame_count * 2}px 50%`,
+  //   ease: `steps(${frame_count})`,
+  //   scrollTrigger: {
+  //     trigger: ".scene",
+  //     start: "bottom bottom",
+  //     end: `+=${frame_count * offset_value}`,
+  //     pin: true,
+  //     scrub: true,
+  //     markers: true,
+  //   },
+  // };
+
+  let defaultAnimation = {
+    duration: 0.5,
+    opacity: 0,
+    yPercent: -150,
+    xPercent: randomNumberBetween(-100, 100),
+    ease: "back",
+    scrollTrigger: {
+      trigger: ".header",
+      start: `top top`,
+      end: `+=4000px`,
+      scrub: true,
+      pin: true,
+      markers: true,
+    },
+  };
+
+  let configTl = {};
+
+  //--- ---
+
+  let introAnimation = gsap.timeline(configTl);
+  
 
   useEffect(() => {
-    gsap.to(".viewer", {
-      backgroundPosition: -offset_value * frame_count * 2 + "px 50%",
-      ease: `steps(${frame_count})`, // use a stepped ease for the sprite sheet
-      scrollTrigger: {
-        trigger: ".scene",
-        start: "bottom bottom",
-        end: `+=${frame_count * offset_value}`,
-        pin: true,
-        scrub: true,
-      },
-    });
-    gsap.to(".F", {
-      backgroundPosition: -500,
-      ease: "back",
-      scrollTrigger: {
-        trigger: ".header",
-        start: "top top",
-        end: "+=500",
-        pin: true,
-        scrub: true,
-      },
-    });
-  }, []);
+    introAnimation
+      .from(`.header`, {
+        ...defaultAnimation,
+      })
+      .from(`.subtitle`, {
+        ...defaultAnimation,
+        delay: 1,
+      });
+  }, [introAnimation]);
+
+  // useEffect(() => {
+  //   gsap.to(".viewer", {
+  //     ...guySipping,
+  //   });
+  // }, []);
+
+  //--- ---
 
   return (
     <>
+      <div className="center">
+        <h1>Scroll Down</h1>
+      </div>
       <Header />
-      <section className="scene section center">
-        <div className="viewer">viewer</div>
-      </section>
-      <div className="section center">
+      {/*   <section className="scene center">
+        <div className="viewer">
+          <h3>viewer</h3>
+        </div>
+      </section> */}
+
+      {/* <div className="center">
         <main className="center">
-          <h3>Feed</h3>
+          <h2>Feed</h2>
         </main>
       </div>
-      <div className="section center">
+
+      <div className="center">
         <footer className="center">
-          <h3>Footer</h3>
+          <h2>Footer</h2>
         </footer>
-      </div>
+      </div> */}
     </>
   );
 }
