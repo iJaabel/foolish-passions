@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-// import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 export default () => {
   return (
@@ -38,6 +38,13 @@ export default () => {
           <span className="whitespace"> </span>
           <span className="word">education</span>
         </h3>
+        <div className="navbar" >
+            {/* <Link to="" >Home</Link>
+            <Link to="" >My Simple Gym</Link>
+            <Link to="" >About</Link>
+            <Link to="" >Contact</Link> */}
+        </div>
+
       </header>
     </div>
   );

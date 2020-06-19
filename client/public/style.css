@@ -1,0 +1,102 @@
+
+/* --- --- */
+
+:root {
+  /* --- Main Colors --- */
+  --fp-blue: rgb(65, 89, 133);
+  --fp-yellow: rgb(229, 189, 58);
+  --fp-black: rgb(58, 58, 58);
+  /*  */
+  --fp-nat-blue: rgb(69, 118, 162);
+  --fp-grey: rgb(188, 204, 213);
+  
+  /* --- Color Hues --- */
+  --fp-blue-lighter-100: #EAFFFF;
+  --fp-blue-lighter-75: #C0D6E1;
+  --fp-blue-lighter-50: #96ACC2;
+  --fp-blue-lighter-25: #6B83A4;
+  --fp-blue-darker-25: #31436E;
+  --fp-blue-darker-50: #212D58;
+  --fp-blue-darker-75: #101641;
+  --fp-blue-darker-100: #00002A;
+
+--fp-yellow-lighter-100: #FFFB78;
+--fp-yellow-lighter-75: #F9EC69;
+--fp-yellow-lighter-50: #F2DC59;
+--fp-yellow-lighter-25: #ECCD4A;
+--fp-yellow-darker-25: #B78E2C;
+--fp-yellow-darker-50: #885F1D;
+--fp-yellow-darker-75: #5A2F0F;
+--fp-yellow-darker-100: #2B0000;
+
+  /* --- Size --- */
+  --triangle-size: 100px;
+}
+
+html,
+body {
+  overflow: auto;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  background-color: var(--fp-grey);
+  color: var(--fp-black);
+  margin: 0 auto;
+  height: 100%;
+  width: 100%;
+}
+
+/* --- --- */
+
+.header {
+  height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 200px;
+  margin-top: 400px;
+  max-width: 200px;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-position: 0 50%;
+}
+
+.scene {
+  height: 100%;
+  width: 100%;
+  background: var(--fp-blue);
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.viewer {
+  height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 200px;
+  margin-top: 400px;
+  max-width: 200px;
+  width: 100%;
+  /* background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/210284/doodle-sprite.png); */
+  background-repeat: no-repeat;
+  background-position: 0 50%;
+  padding: 130px 0 200px 0;
+}
+
+/* --- --- */
+
+.triangle-topleft {
+  width: 0;
+  height: 0;
+  border-top: var(--triangle-size) solid var(--fp-blue);
+  border-right: var(--triangle-size) solid transparent;
+}
+
+.triangle-bottomright {
+  width: 0;
+  height: 0;
+  border-bottom: var(--triangle-size) solid var(--fp-yellow);
+  border-left: var(--triangle-size) solid transparent;
+}
