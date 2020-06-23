@@ -1,5 +1,8 @@
 import React, { useEffect } from "react";
 import Header from "./components/Header";
+import Routes from "./Routes";
+import Footer from "./components/Footer";
+import { BrowserRouter as Router } from "react-router-dom";
 
 export default function App() {
   // --- ---
@@ -9,28 +12,13 @@ export default function App() {
 
   // --- ---
 
-  
-
   return (
     <>
-      <div className="center">
-        <h1>Scroll Down</h1>
-      </div>
-      <Header />
-      <div className="triangle-topleft" />
-      <div className="triangle-bottomright" />
-
-      {/* <div className="center">
-        <main className="center">
-          <h2>Feed</h2>
-        </main>
-      </div>
-
-      <div className="center">
-        <footer className="center">
-          <h2>Footer</h2>
-        </footer>
-      </div> */}
+      <Router>
+        <Header />
+        <Routes />
+        <Footer />
+      </Router>
     </>
   );
 }

@@ -1,4 +1,3 @@
-
 /* --- --- */
 
 :root {
@@ -9,25 +8,25 @@
   /*  */
   --fp-nat-blue: rgb(69, 118, 162);
   --fp-grey: rgb(188, 204, 213);
-  
-  /* --- Color Hues --- */
-  --fp-blue-lighter-100: #EAFFFF;
-  --fp-blue-lighter-75: #C0D6E1;
-  --fp-blue-lighter-50: #96ACC2;
-  --fp-blue-lighter-25: #6B83A4;
-  --fp-blue-darker-25: #31436E;
-  --fp-blue-darker-50: #212D58;
-  --fp-blue-darker-75: #101641;
-  --fp-blue-darker-100: #00002A;
 
---fp-yellow-lighter-100: #FFFB78;
---fp-yellow-lighter-75: #F9EC69;
---fp-yellow-lighter-50: #F2DC59;
---fp-yellow-lighter-25: #ECCD4A;
---fp-yellow-darker-25: #B78E2C;
---fp-yellow-darker-50: #885F1D;
---fp-yellow-darker-75: #5A2F0F;
---fp-yellow-darker-100: #2B0000;
+  /* --- Color Hues --- */
+  --fp-blue-lighter-100: #eaffff;
+  --fp-blue-lighter-75: #c0d6e1;
+  --fp-blue-lighter-50: #96acc2;
+  --fp-blue-lighter-25: #6b83a4;
+  --fp-blue-darker-25: #31436e;
+  --fp-blue-darker-50: #212d58;
+  --fp-blue-darker-75: #101641;
+  --fp-blue-darker-100: #00002a;
+
+  --fp-yellow-lighter-100: #fffb78;
+  --fp-yellow-lighter-75: #f9ec69;
+  --fp-yellow-lighter-50: #f2dc59;
+  --fp-yellow-lighter-25: #eccd4a;
+  --fp-yellow-darker-25: #b78e2c;
+  --fp-yellow-darker-50: #885f1d;
+  --fp-yellow-darker-75: #5a2f0f;
+  --fp-yellow-darker-100: #2b0000;
 
   /* --- Size --- */
   --triangle-size: 100px;
@@ -44,45 +43,156 @@ body {
   width: 100%;
 }
 
-/* --- --- */
+/* --- Background colors theme blue --- */
 
-.header {
-  height: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 200px;
-  margin-top: 400px;
-  max-width: 200px;
-  width: 100%;
-  background-repeat: no-repeat;
-  background-position: 0 50%;
+.bg-fp-lighter-blue-100 {
+  background-color: var(--fp-blue-lighter-100);
 }
 
-.scene {
-  height: 100%;
-  width: 100%;
-  background: var(--fp-blue);
+.bg-fp-lighter-blue-75 {
+  background-color: var(--fp-blue-lighter-75);
 }
 
-.center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
+.bg-fp-lighter-blue-50 {
+  background-color: var(--fp-blue-lighter-50);
 }
 
-.viewer {
-  height: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 200px;
-  margin-top: 400px;
-  max-width: 200px;
-  width: 100%;
-  /* background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/210284/doodle-sprite.png); */
-  background-repeat: no-repeat;
-  background-position: 0 50%;
-  padding: 130px 0 200px 0;
+.bg-fp-lighter-blue-25 {
+  background-color: var(--fp-blue-lighter-25);
+}
+
+.bg-fp-blue {
+  background-color: var(--fp-blue);
+}
+
+.bg-fp-darker-blue-25 {
+  background-color: var(--fp-blue-darker-25);
+}
+
+.bg-fp-darker-blue-50 {
+  background-color: var(--fp-blue-darker-50);
+}
+
+.bg-fp-darker-blue-75 {
+  background-color: var(--fp-blue-darker-75);
+}
+
+.bg-fp-darker-blue-100 {
+  background-color: var(--fp-blue-darker-100);
+}
+
+/* --- background color theme yellow --- */
+
+.bg-fp-lighter-yellow-100 {
+  background-color: var(--fp-yellow-lighter-100);
+}
+
+.bg-fp-lighter-yellow-75 {
+  background-color: var(--fp-yellow-lighter-75);
+}
+
+.bg-fp-lighter-yellow-50 {
+  background-color: var(--fp-yellow-lighter-50);
+}
+
+.bg-fp-lighter-yellow-25 {
+  background-color: var(--fp-yellow-lighter-25);
+}
+
+.bg-fp-yellow {
+  background-color: var(--fp-yellow);
+}
+
+.bg-fp-darker-yellow-25 {
+  background-color: var(--fp-yellow-darker-25);
+}
+
+.bg-fp-darker-yellow-50 {
+  background-color: var(--fp-yellow-darker-50);
+}
+
+.bg-fp-darker-yellow-75 {
+  background-color: var(--fp-yellow-darker-75);
+}
+
+.bg-fp-darker-yellow-100 {
+  background-color: var(--fp-yellow-darker-100);
+}
+
+/* --- text color theme blue --- */
+
+.text-fp-lighter-blue-100 {
+  color: var(--fp-blue-lighter-100);
+}
+
+.text-fp-lighter-blue-75 {
+  color: var(--fp-blue-lighter-75);
+}
+
+.text-fp-lighter-blue-50 {
+  color: var(--fp-blue-lighter-50);
+}
+
+.text-fp-lighter-blue-25 {
+  color: var(--fp-blue-lighter-25);
+}
+
+.text-fp-blue {
+  color: var(--fp-blue);
+}
+
+.text-fp-darker-blue-25 {
+  color: var(--fp-blue-darker-25);
+}
+
+.text-fp-darker-blue-50 {
+  color: var(--fp-blue-darker-50);
+}
+
+.text-fp-darker-blue-75 {
+  color: var(--fp-blue-darker-75);
+}
+
+.text-fp-darker-blue-100 {
+  color: var(--fp-blue-darker-100);
+}
+
+/* --- text color theme yellow --- */
+
+.text-fp-lighter-yellow-100 {
+  color: var(--fp-yellow-lighter-100);
+}
+
+.text-fp-lighter-yellow-75 {
+  color: var(--fp-yellow-lighter-75);
+}
+
+.text-fp-lighter-yellow-50 {
+  color: var(--fp-yellow-lighter-50);
+}
+
+.text-fp-lighter-yellow-25 {
+  color: var(--fp-yellow-lighter-25);
+}
+
+.text-fp-yellow {
+  color: var(--fp-yellow);
+}
+
+.text-fp-darker-yellow-25 {
+  color: var(--fp-yellow-darker-25);
+}
+
+.text-fp-darker-yellow-50 {
+  color: var(--fp-yellow-darker-50);
+}
+
+.text-fp-darker-yellow-75 {
+  color: var(--fp-yellow-darker-75);
+}
+
+.text-fp-darker-yellow-100 {
+  color: var(--fp-yellow-darker-100);
 }
 
 /* --- --- */
