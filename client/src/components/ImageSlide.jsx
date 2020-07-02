@@ -3,28 +3,27 @@ import React from "react";
 export default () => {
   let src = "https://www.jquery-az.com/html/images/banana.jpg";
 
-//   const returnSliderInidcators = (numberOfSlides) => {
-//     if (!numberOfSlides) return;
-//     if (numberOfSlides === 1) {
-//       return (
-//         <ol className="carousel-indicators">
-//           <li data-target="#carousel" data-slide-to="0" className="active" />
-//         </ol>
-//       );
-//     } else if (numberOfSlides >= 2) {
-//       return (
-//         <ol className="carousel-indicators">
-//           <li data-target="#carousel" data-slide-to="0" className="active" />
-//           <li data-target="#carousel" data-slide-to="1" />
-//         </ol>
-//       );
-//     }
-//   };
+  //   const returnSliderInidcators = (numberOfSlides) => {
+  //     if (!numberOfSlides) return;
+  //     if (numberOfSlides === 1) {
+  //       return (
+  //         <ol className="carousel-indicators">
+  //           <li data-target="#carousel" data-slide-to="0" className="active" />
+  //         </ol>
+  //       );
+  //     } else if (numberOfSlides >= 2) {
+  //       return (
+  //         <ol className="carousel-indicators">
+  //           <li data-target="#carousel" data-slide-to="0" className="active" />
+  //           <li data-target="#carousel" data-slide-to="1" />
+  //         </ol>
+  //       );
+  //     }
+  //   };
 
   return (
     <div className="jumbotron-fluid">
       <div id="slide-id" className="carousel slide" data-ride="carousel">
-
         <ol className="carousel-indicators">
           <li data-target="#carousel" data-slide-to="0" className="active"></li>
           <li data-target="#carousel" data-slide-to="1"></li>
@@ -33,10 +32,12 @@ export default () => {
 
         <div className="carousel-inner" role="listbox">
           <div className="carousel-item active">
+            <div className="layer" />
             <img src={src} title="" alt="" />
           </div>
 
           <div className="carousel-item">
+            <div className="layer" />
             <img
               src="https://www.jquery-az.com/html/images/strawberries.jpg"
               title=""
@@ -45,6 +46,7 @@ export default () => {
           </div>
 
           <div className="carousel-item">
+            <div className="layer" />
             <img src={src} title="" alt="" />
           </div>
         </div>

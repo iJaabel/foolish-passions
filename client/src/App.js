@@ -1,24 +1,21 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Header from "./components/Header";
 import Routes from "./Routes";
 import Footer from "./components/Footer";
+// import Sidebar from "./components/SideBar";
 import { BrowserRouter as Router } from "react-router-dom";
 
 export default function App() {
   // --- ---
-
-  const randomNumberBetween = (min, max) =>
-    Math.floor(min + Math.random() * (max + 1 - min));
-
   // --- ---
-
   return (
-    <>
+    <div className="">
       <Router>
         <Header />
+        {/* <Sidebar /> */}
         <Routes />
         <Footer />
       </Router>
-    </>
+    </div>
   );
 }

@@ -7,7 +7,7 @@ export default () => {
       <header className="">
         {/* Nav */}
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-          <a className="navbar-brand bounce-out" href="#">
+          <Link className="navbar-brand" to="/">
             <h1 className="title">
               <span className="word">
                 <span className="letter">F</span>
@@ -41,7 +41,7 @@ export default () => {
               <span className="whitespace"> </span>
               <span className="word">education</span>
             </h3>
-          </a>
+          </Link>
           <button
             className="navbar-toggler"
             type="button"
@@ -53,7 +53,6 @@ export default () => {
           >
             <span className="navbar-toggler-icon" />
           </button>
-
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav mr-auto">
               <li className="nav-item active">
@@ -62,7 +61,7 @@ export default () => {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/vid">
+                <Link className="nav-link" to="/video">
                   Videos
                 </Link>
               </li>
@@ -71,7 +70,6 @@ export default () => {
                   About
                 </Link>
               </li>
-              
               <li className="nav-item">
                 <Link className="nav-link" to="/contact">
                   Contact

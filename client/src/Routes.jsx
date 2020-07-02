@@ -4,7 +4,7 @@ import Default from "./components/Default";
 import Feed from "./components/Feed";
 import About from './components/About';
 import Contact from './components/Contact';
-import VideoDisplay from './components/Video/VideoDisplay';
+import VideoDisplay from './video/VideoDisplay';
 
 export default () => (
     <Switch>

@@ -197,6 +197,17 @@ body {
 
 /* --- --- */
 
+.layer {
+  background-color: rgba(0, 0, 0, 0.2);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* --- --- */
+
 .triangle-topleft {
   width: 0;
   height: 0;
@@ -209,4 +220,12 @@ body {
   height: 0;
   border-bottom: var(--triangle-size) solid var(--fp-yellow);
   border-left: var(--triangle-size) solid transparent;
+}
+
+.sidebar {
+  width: 250px;
+  top: 0px;
+  left: 0px;
+  bottom: 0px;
+  background-color: var(--fp-blue-lighter-100);
 }
