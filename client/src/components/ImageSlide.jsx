@@ -1,25 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
 
-export default () => {
-  let src = "https://www.jquery-az.com/html/images/banana.jpg";
+export default ({ img }) => {
+  const [count, setCount] = useState(0);
 
-  //   const returnSliderInidcators = (numberOfSlides) => {
-  //     if (!numberOfSlides) return;
-  //     if (numberOfSlides === 1) {
-  //       return (
-  //         <ol className="carousel-indicators">
-  //           <li data-target="#carousel" data-slide-to="0" className="active" />
-  //         </ol>
-  //       );
-  //     } else if (numberOfSlides >= 2) {
-  //       return (
-  //         <ol className="carousel-indicators">
-  //           <li data-target="#carousel" data-slide-to="0" className="active" />
-  //           <li data-target="#carousel" data-slide-to="1" />
-  //         </ol>
-  //       );
-  //     }
-  //   };
+  let fpBanner = "https://imgur.com/442QYuR.jpg";
+  let origin = "https://imgur.com/pALI3z5.jpg";
+
+  let imgData = [
+    {
+      title: "Foolish Passions",
+      src: "https://imgur.com/442QYuR.jpg",
+      alt: "coney island Foolish Passions Pose",
+    },
+    {
+      title: "Foolish Passions Origin Story",
+      src: "https://imgur.com/pALI3z5.jpg",
+      alt: "The origin of our logo",
+    },
+  ];
+
+  const imgSetup = () => {
+    // console.log("img Setup started...")
+    imgData.forEach((img) => {
+      // console.log("ran forEach with", img)
+      let { src, title, alt } = img;
+      return (
+        <div className="carousel-item">
+          <div className="layer" />
+          <img className="scroll-image" src={src} alt={alt} title={title} />
+        </div>
+      );
+    });
+  };
 
   return (
     <div className="jumbotron-fluid">
@@ -31,25 +43,28 @@ export default () => {
         </ol>
 
         <div className="carousel-inner" role="listbox">
-          <div className="carousel-item active">
-            <div className="layer" />
-            <img src={src} title="" alt="" />
-          </div>
-
-          <div className="carousel-item">
+          {imgSetup()}
+          {/* <div className="carousel-item active">
             <div className="layer" />
             <img
-              src="https://www.jquery-az.com/html/images/strawberries.jpg"
-              title=""
-              alt=""
+              className="scroll-image"
+              src={fpBanner}
+              title="Foolish Passions"
+              alt="coney island Foolish Passions Pose"
             />
           </div>
 
           <div className="carousel-item">
             <div className="layer" />
-            <img src={src} title="" alt="" />
-          </div>
+            <img
+              className="scroll-image"
+              src={origin}
+              title="Foolish Passions Origin Story"
+              alt="The origin of our logo"
+            />
+          </div> */}
         </div>
+        {/* --- --- */}
         <a
           className="carousel-control-prev"
           href="#slide-id"
