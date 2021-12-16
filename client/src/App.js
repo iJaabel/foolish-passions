@@ -11,10 +11,10 @@ export default function App() {
   return (
     <div className="">
       <Router>
-        <Header /> 
-        <Sidebar />
+        {/* <Header />  */}
+        {/* <Sidebar /> */}
         <Routes />
-        <Footer />
+        {/* <Footer /> */}
       </Router>
     </div>
   );
