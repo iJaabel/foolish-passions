@@ -11,6 +11,7 @@ const UserSchema = new mongoose.Schema(
     email: {
       type: String,
       require: true,
+      max: 50,
       unique: true,
     },
     password: {
@@ -37,6 +38,34 @@ const UserSchema = new mongoose.Schema(
     isAdmin: {
       type: Boolean,
       default: false,
+    },
+    desc: {
+      type: String,
+      max: 200,
+    },
+    city: {
+      type: String,
+      max: 50,
+    },
+    hometown: {
+      type: String,
+      max: 50,
+    },
+    badges: {
+      type: Array,
+      default: [],
+    },
+    danceStyle: {
+      type: Number,
+      enum: [1, 2, 3],
+    },
+    isAvailableToPractice: {
+      type: Boolean,
+      default: false,
+    },
+    whenAvailableHours: {
+      type: Array,
+      default: [],
     },
   },
   { timestamps: true }

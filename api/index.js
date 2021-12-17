@@ -6,11 +6,17 @@ const morgan = require("morgan");
 
 const app = express();
 
+//---
+
 const userRoute = require("./routes/users");
 const authRoute = require("./routes/auth");
+const postRoute = require("./routes/posts");
+
+//---
 
 dotenv.config();
 
+//database connection
 mongoose.connect(
   process.env.MONGO_URL,
   { useNewUrlParser: true, useUnifiedTopology: true },
@@ -24,10 +30,11 @@ app.use(express.json());
 app.use(helmet());
 app.use(morgan("common"));
 
-//---
+//end points
 
 app.use("/api/users", userRoute);
 app.use("/api/auth", authRoute);
+app.use("/api/posts", postRoute);
 
 //---
 
