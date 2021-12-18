@@ -5,6 +5,6 @@ const router = require("express").Router();
 //delete a post
 //like a post
 //get a post
-//get all post
+//get timeline posts
 
 module.exports = router;

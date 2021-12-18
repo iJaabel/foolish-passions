@@ -1,8 +1,8 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const dotenv = require("dotenv");
 const helmet = require("helmet");
 const morgan = require("morgan");
+const dotenv = require("dotenv");
 
 const app = express();
 
@@ -16,7 +16,7 @@ const postRoute = require("./routes/posts");
 
 dotenv.config();
 
-//database connection
+//database connections
 mongoose.connect(
   process.env.MONGO_URL,
   { useNewUrlParser: true, useUnifiedTopology: true },
@@ -31,7 +31,6 @@ app.use(helmet());
 app.use(morgan("common"));
 
 //end points
-
 app.use("/api/users", userRoute);
 app.use("/api/auth", authRoute);
 app.use("/api/posts", postRoute);
