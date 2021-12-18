@@ -5,6 +5,7 @@ const morgan = require("morgan");
 const dotenv = require("dotenv");
 
 const app = express();
+const port = 8800
 
 //---
 
@@ -37,6 +38,7 @@ app.use("/api/posts", postRoute);
 
 //---
 
-app.listen(8800, () => {
+app.listen(port, () => {
   console.log("Backend server is running");
+  console.log(`and listening on port ${port}`);
 });
