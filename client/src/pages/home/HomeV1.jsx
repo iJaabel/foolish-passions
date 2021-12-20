@@ -1,5 +1,5 @@
 import React from "react";
-import ImageSlide from "./ImageSlide";
+import ImageSlide from "../../components/ImageSlide";
 // import "../animations/animations.css";
 
 export default () => (

@@ -1,10 +1,10 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-import Default from "./components/Default";
-import Home from "./components/Home";
-import About from "./components/About";
-import Contact from "./components/Contact";
-import VideoDisplay from "./video/VideoDisplay";
+import Default from "./pages/error/Default";
+import Home from "./pages/home/Home";
+import About from "./pages/about/About";
+import Contact from "./pages/contact/Contact";
+import VideoDisplay from "./pages/video/VideoDisplay";
 
 export default () => (
   <Switch>
