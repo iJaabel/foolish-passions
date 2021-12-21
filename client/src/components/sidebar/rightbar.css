@@ -3,5 +3,18 @@
 }
 
 .rightbarWrapper{
-     
+     padding: 20px 20px 0 0;
+}
+
+.rightbarAd{
+    
+}
+
+.birthdayContainer{
+    display: flex;
+}
+
+.birthdayText{
+    font-weight: 300;
+    font-size: 15px;
 }
