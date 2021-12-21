@@ -10,6 +10,8 @@
   padding: 10px;
 }
 
+/* --- */
+
 .postTop {
   display: flex;
   align-items: center;
@@ -26,20 +28,32 @@
   height: 32px;
   border-radius: 50%;
   object-fit: cover;
+  cursor: pointer;
 }
 
 .postUsername {
   font-size: 15px;
   font-weight: 500;
   margin: 0 10px;
+  cursor: pointer;
 }
 
 .postDate {
   font-size: 12px;
 }
 
+.postTopRight {
+  cursor: pointer;
+}
+
+/* --- */
+
 .postCenter {
   margin: 20px 0;
+}
+
+.postText {
+  font-weight: normal;
 }
 
 .postImg {
@@ -47,6 +61,7 @@
   width: 100%;
   max-height: 500px;
   object-fit: contain;
+  cursor: pointer;
 }
 
 .postBottom {
@@ -69,6 +84,10 @@
 
 .postLikeCounter {
   font-size: 15px;
+}
+
+.postLikePeople {
+  cursor: pointer;
 }
 
 .postCommentText {

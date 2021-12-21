@@ -26,6 +26,7 @@ export default () => {
         </ul>
         <button className="leftbarShowMore">Show More</button>
         <hr className="leftbarLine" />
+        <span className="leftbarFriendListTitle">Recently Active</span>
         <ul className="leftbarFriendList">
           <li className="leftbarFriend">
             <img className="leftbarFriendImg" src="https://randomuser.me/api/portraits/women/20.jpg" alt="" />

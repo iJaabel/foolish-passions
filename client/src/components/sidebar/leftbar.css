@@ -1,5 +1,5 @@
 .leftbarContainer {
-  flex: 3;
+  flex: 2;
   height: calc(100vh - 50px);
   overflow-y: scroll;
 }
@@ -35,15 +35,23 @@
 }
 
 .leftbarShowMore {
-  width: 90%;
+  width: 150px;
   border: none;
   padding: 10px;
   border-radius: 5px;
   font-weight: 500;
 }
 
+/* --- */
+
 .leftbarLine {
   margin: 20px 0;
+}
+
+/* --- */
+
+.leftbarFriendListTitle{
+  font-weight: 500;
 }
 
 .leftbarFriendList {
