@@ -9,7 +9,7 @@ export default () => {
         <ul className="leftbarList">
           <li className="leftbarListItem">
             <RssFeed className="leftbarIcon" />
-            <span className="leftbarListItemText">Feed</span>
+            <span className="leftbarListItemText">Seek Partner</span>
           </li>
           <li className="leftbarListItem">
             <Chat className="leftbarIcon" />
@@ -21,7 +21,7 @@ export default () => {
           </li>
           <li className="leftbarListItem">
             <WorkOutline className="leftbarIcon" />
-            <span className="leftbarListItemText">Support</span>
+            <span className="leftbarListItemText">Teachers</span>
           </li>
         </ul>
         <button className="leftbarShowMore">Show More</button>

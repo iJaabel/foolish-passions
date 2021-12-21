@@ -21,6 +21,54 @@
   margin-right: 10px;
 }
 
-.shareInput{
-    border: 10px;
+.shareInput {
+  border: 10px;
+  width: 80%;
+}
+
+.shareInput:focus {
+  outline: none;
+}
+
+.shareLine {
+  margin: 20px;
+}
+
+.shareBottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.shareOptions {
+  display: flex;
+  margin-left: 120px;
+}
+
+.shareOption {
+  display: flex;
+  align-items: center;
+  margin-right: 15px;
+  cursor: pointer;
+}
+
+.shareIcon {
+  font-size: 18px;
+  margin-right: 3px;
+}
+
+.shareOptionText {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.shareButton {
+  border: none;
+  padding: 7px;
+  border-radius: 7px;
+  background-color: green;
+  font-weight: 500;
+  margin-right: 20px;
+  cursor: pointer;
+  color: white;
 }
