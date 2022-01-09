@@ -1,6 +1,8 @@
 import React from "react";
-import "./leftbar.css";
+import "./Leftbar.css";
 import { RssFeed, WorkOutline, Event, Chat } from "@material-ui/icons";
+import { Users } from "../../../dummy/data";
+import CloseFriend from "../CloseFriend/CloseFriend";
 
 export default () => {
   return (
@@ -28,7 +30,7 @@ export default () => {
         <hr className="leftbarLine" />
         <span className="leftbarFriendListTitle">Recently Active</span>
         <ul className="leftbarFriendList">
-
+          {Users.map(u => <CloseFriend key={u.id} user={u} /> )}
         </ul>
       </div>
     </div>

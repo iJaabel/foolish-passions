@@ -1,4 +1,5 @@
 const express = require("express");
+const app = express();
 
 /** config express */
 const bodyParser = require("body-parser");
@@ -6,7 +7,6 @@ const morgan = require("morgan");
 const helmet = require("helmet");
 const dotenv = require("dotenv");
 
-const app = express();
 const port = process.env.PORT || 8800;
 
 app.use(express.json());
@@ -17,18 +17,16 @@ app.use(helmet());
 dotenv.config();
 
 /** config mongoDB */
-const db = require("mongoose");
-db.connect(
+const mongoose = require('mongoose')
+mongoose.connect(
   process.env.MONGO_URL,
   { useNewUrlParser: true, useUnifiedTopology: true },
-  () => {
-    console.log("🕹️  DB connected 🛡️");
-  }
+  () => console.log("🕹️  DB connected 🛡️")
 );
 
-// CORS Header Handler (Mostly handled by Helmet)
+// CORS Header Handler (Mostly handled by Helmet. This gives us more customability)
 app.use((req, res, next) => {
-  //allows all "*" webpages to access this API, change it to just the domain later
+  // Allows all "*" webpages to access this API, change it to just the domain later
   res.header("Access-Control-Allow-Origin", "*");
   res.header(
     "Access-Control-Allow-Headers",

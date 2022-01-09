@@ -1,8 +1,8 @@
 import React from "react";
-import Share from "../share/Share";
-import Post from "../post/Post";
-import "./feed.css";
-import { Posts } from "../../dummy/data";
+import Share from "../Share/Share";
+import Post from "../Post/Post";
+import "./Feed.css";
+import { Posts } from "../../../dummy/data";
 
 export default function Feed() {
   return (

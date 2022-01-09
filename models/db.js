@@ -1,5 +1,5 @@
-const db = require("mongoose");
-const Schema = db.Schema;
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
 const UserSchema = new Schema(
   {
@@ -86,12 +86,29 @@ const UserSchema = new Schema(
   { timestamps: true }
 );
 
-exports.schema = db.model("User", UserSchema);
+const PostSchema = new Schema(
+  {
+    userId: {
+      type: String,
+      require: true,
+    },
+    desc: {
+      type: String,
+      max: 500,
+    },
+    img: {
+      type: String,
+    },
+    vid: {
+      type: String,
+    },
+    likes: {
+      type: Array,
+      default: [],
+    },
+  },
+  { timestamps: true }
+);
 
-// ---
-
-exports.get = async (id, email) => {
-  console.log("get function: ", id, email);
-  const user = await User.schema.findById(id);
-
-};
+exports.userModel = mongoose.model("User", UserSchema);
+exports.postModel = mongoose.model("Post", PostSchema);

@@ -1,6 +1,6 @@
 import React from "react";
 import { Search, Person, Chat, Notifications } from "@material-ui/icons";
-import "./header.css";
+import "./Header.css";
 
 export default function HeaderV3() {
   return (

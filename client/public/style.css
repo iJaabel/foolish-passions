@@ -5,7 +5,7 @@
   --fp-blue: rgb(65, 89, 133);
   --fp-yellow: rgb(229, 189, 58);
   --fp-black: rgb(58, 58, 58);
-  /*  */
+
   --fp-nat-blue: rgb(69, 118, 162);
   --fp-grey: rgb(188, 204, 213);
 
@@ -27,10 +27,11 @@
   --fp-yellow-darker-50: #885f1d;
   --fp-yellow-darker-75: #5a2f0f;
   --fp-yellow-darker-100: #2b0000;
-
+  
   /* --- Size --- */
   --triangle-size: 100px;
 }
+/* 
 
 html,
 body {
@@ -42,8 +43,9 @@ body {
   height: 100%;
   width: 100%;
 }
-
+ */
 /* --- Background colors theme blue --- */
+/* 
 
 .bg-fp-lighter-blue-100 {
   background-color: var(--fp-blue-lighter-100);
@@ -80,9 +82,10 @@ body {
 .bg-fp-darker-blue-100 {
   background-color: var(--fp-blue-darker-100);
 }
-
+ */
 /* --- background color theme yellow --- */
 
+/* 
 .bg-fp-lighter-yellow-100 {
   background-color: var(--fp-yellow-lighter-100);
 }
@@ -118,8 +121,9 @@ body {
 .bg-fp-darker-yellow-100 {
   background-color: var(--fp-yellow-darker-100);
 }
-
+ */
 /* --- text color theme blue --- */
+/* 
 
 .text-fp-lighter-blue-100 {
   color: var(--fp-blue-lighter-100);
@@ -156,8 +160,9 @@ body {
 .text-fp-darker-blue-100 {
   color: var(--fp-blue-darker-100);
 }
-
+ */
 /* --- text color theme yellow --- */
+/*
 
 .text-fp-lighter-yellow-100 {
   color: var(--fp-yellow-lighter-100);
@@ -195,13 +200,11 @@ body {
   color: var(--fp-yellow-darker-100);
 }
 
-/* --- --- */
 
 .scroll-image {
   width: 100%;
 }
 
-/* --- --- */
 
 .layer {
   background-color: rgba(0, 0, 0, 0.2);
@@ -212,7 +215,6 @@ body {
   height: 100%;
 }
 
-/* --- --- */
 
 .triangle-topleft {
   width: 0;
@@ -235,3 +237,5 @@ body {
   bottom: 0px;
   background-color: var(--fp-blue-lighter-100);
 }
+
+*/

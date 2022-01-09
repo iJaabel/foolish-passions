@@ -10,8 +10,8 @@ const authController = require("../controllers/authController");
 const use = (fn) => (req, res, next) =>
   Promise.resolve(fn(req, res, next)).catch(next);
 
-/* auth endpoints */
-api.post("/login", use(authController.signin));
-api.post("/register", use(authController.register));
+/* account endpoints */
+api.post("/api/account/login", use(authController.signin));
+api.post("/api/account/register", use(authController.register));
 
 module.exports = api;

@@ -11,13 +11,13 @@ const use = (fn) => (req, res, next) =>
   Promise.resolve(fn(req, res, next)).catch(next);
 
 /** Posts endpoints */
-api.get("/:id", use(postController.post));
-api.get("/timeline/all", use(postController.timeline));
+api.get("/api/posts/:id", use(postController.post));
+api.get("/api/posts/timeline/all", use(postController.timeline));
 
-api.put("/:id/like", use(postController.like));
-api.put("/:id", use(postController.update));
+api.put("/api/posts/:id/like", use(postController.like));
+api.put("/api/posts/:id", use(postController.update));
 
-api.post("/", use(postController.create));
-api.delete("/:id", use(postController.remove));
+api.post("/api/posts/", use(postController.create));
+api.delete("/api/posts/:id", use(postController.remove));
 
 module.exports = api;

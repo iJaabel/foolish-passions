@@ -1,28 +1,37 @@
-import React from "react";
-import "./post.css";
+import React, { useState } from "react";
+import "./Post.css";
 import { MoreVert } from "@material-ui/icons";
-import { Users, Comments } from "../../dummy/data";
+import { Users, Comments } from "../../../dummy/data";
 
 export default function Post({ post }) {
+  const [like, setLike] = useState(post.reactions);
+  const [isLike, setIsLike] = useState(false);
+
+  const likeHandler = () => {
+    setLike(isLike ? like - 1 : like + 1);
+    setIsLike(!isLike);
+  };
+
   const findUser = (userIdIAmLookingFor) => {
     const foundUser = Users.filter((u) => u.id === userIdIAmLookingFor);
     if (foundUser === undefined || null || NaN || 0 || false) {
-      console.log("no user found")
-      return
-    };
+      console.log("no user found");
+      return;
+    }
     return foundUser;
   };
 
   const findPostComments = (commentsPostIdIAmLookingFor) => {
-    const foundComments = Comments.filter(c => c.postId === commentsPostIdIAmLookingFor)
+    const foundComments = Comments.filter(
+      (c) => c.postId === commentsPostIdIAmLookingFor
+    );
     if (!foundComments) {
-      console.log("no comments found")
-      return
+      console.log("no comments found");
+      return;
     }
-    return foundComments
-  }
-  console.log(`findPostComment: \n`, findPostComments(post?.id));
-
+    return foundComments;
+  };
+  // console.log(`findPostComment: \n`, findPostComments(post?.id));
 
   return (
     <div className="postContainer">
@@ -52,20 +61,23 @@ export default function Post({ post }) {
             <img
               className="likeIcon"
               src="https://media.giphy.com/media/URxmJywZU1J47gdhSV/giphy.gif"
+              onClick={likeHandler}
               alt="nice icon"
             />
             <img
               className="likeIcon"
               src="https://media.giphy.com/media/hrXV1CvTk55kguYmUu/giphy.gif"
+              onClick={likeHandler}
               alt="amazing icon"
             />
             <span className="postLikeCounter">
-              <b className="postLikePeople">{post.reactions} people</b> liked
-              this post
+              <b className="postLikePeople">{like} people</b> liked this post
             </span>
           </div>
           <div className="postBottomRight">
-            <span className="postCommentText">{findPostComments(post.id).length} Comments</span>
+            <span className="postCommentText">
+              {findPostComments(post.id).length} Comments
+            </span>
           </div>
         </div>
       </div>

@@ -10,12 +10,12 @@ const use = (fn) => (req, res, next) =>
   Promise.resolve(fn(req, res, next)).catch(next);
 
   /** account endpoints */
-api.get("/:id", use(userController.user));
+api.get("/api/users/:id", use(userController.user));
 
-api.put("/:id/follow", use(userController.follow));
-api.put("/:id/unfollow", use(userController.unfollow));
-api.put("/:id", use(userController.update));
+api.put("/api/users/:id/follow", use(userController.follow));
+api.put("/api/users/:id/unfollow", use(userController.unfollow));
+api.put("/api/users/:id", use(userController.update));
 
-api.delete("/:id", use(userController.remove));
+api.delete("/api/users/:id", use(userController.remove));
 
 module.exports = api;

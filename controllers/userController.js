@@ -2,15 +2,16 @@ const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 
 exports.user = async (req, res, next) => {
-  const user = await User.findById(req.params.id);
+  // 1. get & return user
+  const user = await User.schema.findById(req.params.id);
   const { password, updatedAt, ...other } = user._doc;
   res.status(200).json(other);
 };
 
 exports.follow = async (req, res, next) => {
   if (req.body.userId !== req.params.id) {
-    const user = await User.findById(req.params.id);
-    const currentUser = await User.findById(req.body.userId);
+    const user = await User.schema.findById(req.params.id);
+    const currentUser = await User.schema.findById(req.body.userId);
     if (!user.followers.includes(req.body.userId)) {
       await user.updateOne({ $push: { followers: req.body.userId } });
       await currentUser.updateOne({ $push: { following: req.params.id } });
@@ -25,8 +26,8 @@ exports.follow = async (req, res, next) => {
 
 exports.unfollow = async (req, res, next) => {
   if (req.body.userId !== req.params.id) {
-    const user = await User.findById(req.params.id);
-    const currentUser = await User.findById(req.body.userId);
+    const user = await User.schema.findById(req.params.id);
+    const currentUser = await User.schema.findById(req.body.userId);
     if (user.followers.includes(req.body.userId)) {
       await user.updateOne({ $pull: { followers: req.body.userId } });
       await currentUser.updateOne({ $pull: { following: req.params.id } });
@@ -35,7 +36,7 @@ exports.unfollow = async (req, res, next) => {
       res.status(403).json("you dont follow this user");
     }
   } else {
-    res.status(403).jason("You cannot unfollow yourself");
+    res.status(403).json("You cannot unfollow yourself");
   }
 };
 
