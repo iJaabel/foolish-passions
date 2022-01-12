@@ -12,7 +12,7 @@ const use = (fn) => (req, res, next) =>
 
 /** Posts endpoints */
 api.get("/api/posts/:id", use(postController.post));
-api.get("/api/posts/timeline/all", use(postController.timeline));
+api.get("/api/posts/timeline/:userId", use(postController.timeline));
 
 api.put("/api/posts/:id/like", use(postController.like));
 api.put("/api/posts/:id", use(postController.update));

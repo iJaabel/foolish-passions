@@ -1,11 +1,33 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Post.css";
 import { MoreVert } from "@material-ui/icons";
-import { Users, Comments } from "../../../dummy/data";
+// import { Users, Comments } from "../../../dummy/data";
+// import { getUser } from "../../../app";
+// https://youtu.be/zM93yZ_8SvE?t=5214
+// https://youtu.be/pFHyZvVxce0?t=1648
 
 export default function Post({ post }) {
-  const [like, setLike] = useState(post.reactions);
+  const [like, setLike] = useState(post.likes.length);
   const [isLike, setIsLike] = useState(false);
+  // const [user, setUser] = useState();
+
+  useEffect(
+    () =>
+      console.log(
+        "useEffect in <Post /> component dependant on like state:\n",
+        like,
+        "and isLike state:\n",
+        isLike
+      ),
+    [like, isLike]
+  );
+
+  // useEffect(() => {
+  //   const data = getUser();
+  //   setUser(data);
+  // }, []);
+
+  // --- ---
 
   const likeHandler = () => {
     setLike(isLike ? like - 1 : like + 1);
@@ -40,7 +62,7 @@ export default function Post({ post }) {
           <div className="postTopLeft">
             <img
               className="postProfileImg"
-              src={findUser(post.userId)[0].image}
+              src={findUser(post.userId)[0].image || "/no-avatar.png"}
               alt="post profile"
             />
             <span className="postUsername">
@@ -85,4 +107,3 @@ export default function Post({ post }) {
   );
 }
 
-// https://youtu.be/zM93yZ_8SvE?t=5214

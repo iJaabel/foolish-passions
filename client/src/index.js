@@ -1,16 +1,18 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './app/App';
+import React from "react";
+import { render } from "react-dom";
+import { Provider } from "react-redux";
+import { App, store } from "./app";
+
 // import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(
-  <React.StrictMode>
+render(
+  <Provider store={store}>
     <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+  </Provider>,
+  document.getElementById("root")
 );
 
-// If you want your app to work offline and load faster, you can change public this. date.now() 
+// If you want your app to work offline and load faster, you can change public this. date.now()
 // unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA 
+// Learn more about service workers: https://bit.ly/CRA-PWA
 // serviceWorker.unregister();

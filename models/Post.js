@@ -1,6 +1,6 @@
-const mongoose = require("mongoose");
+const db = require("mongoose");
 
-const PostSchema = new mongoose.Schema(
+const PostSchema = new db.Schema(
   {
     userId:{
       type: String,
@@ -25,4 +25,4 @@ const PostSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Post", PostSchema);
+module.exports = db.model("Post", PostSchema);

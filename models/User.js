@@ -86,12 +86,12 @@ const UserSchema = new Schema(
   { timestamps: true }
 );
 
-exports.schema = db.model("User", UserSchema);
+module.exports = db.model("User", UserSchema);
 
 // ---
 
-exports.get = async (id, email) => {
-  console.log("get function: ", id, email);
-  const user = await User.schema.findById(id);
+// exports.get = async (id, email) => {
+//   console.log("get function: ", id, email);
+//   const user = await User.schema.findById(id);
 
-};
+// };

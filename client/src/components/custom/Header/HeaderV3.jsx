@@ -1,12 +1,15 @@
 import React from "react";
 import { Search, Person, Chat, Notifications } from "@material-ui/icons";
 import "./Header.css";
+import { Link } from "react-router-dom";
 
 export default function HeaderV3() {
   return (
     <div className="topbarContainer">
       <div className="topbarLeft">
-        <span className="logo">Foolish Passions</span>
+        <Link to="/" style={{ textDecoration: "none" }}>
+          <span className="logo">Foolish Passions</span>
+        </Link>
       </div>
       <div className="topbarCenter">
         <div className="searchBar">
