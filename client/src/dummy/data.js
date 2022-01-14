@@ -1,5 +1,18 @@
 // Dummy data for Users, Posts, and Comments
 
+export const imgData = [
+  {
+    title: "Foolish Passions",
+    src: "https://imgur.com/442QYuR.jpg",
+    alt: "coney island Foolish Passions Pose",
+  },
+  {
+    title: "Foolish Passions Origin Story",
+    src: "https://imgur.com/pALI3z5.jpg",
+    alt: "The origin of our logo",
+  },
+];
+
 export const Users = [
   {
     id: 1,

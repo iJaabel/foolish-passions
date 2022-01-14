@@ -1,15 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const initialState = {
+    data: [],
+    pending: null,
+}
+
 export const userSlice = createSlice({
   name: "user",
-  initialState: {
-    data: {
-      name: "",
-      email: "",
-    },
-    pending: null,
-    rejected: false,
-  },
+  initialState,
   reducers: {
     isPending: (state) => {
       state.pending = true;

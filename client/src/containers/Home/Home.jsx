@@ -1,8 +1,5 @@
 import React from "react";
-import Topbar from "../../components/custom/Header/HeaderV3";
-import Leftbar from "../../components/custom/Sidebars/Leftbar";
-import Rightbar from "../../components/custom/Sidebars/Rightbar";
-import Feed from "../../components/custom/Feed/Feed";
+import { Header as Topbar, Leftbar, Rightbar, Feed } from "../../components";
 import "./home.css";
 
 export default () => (

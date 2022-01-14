@@ -1,11 +1,11 @@
-import React, { useEffect } from "react";
-import Share from "../Share/Share";
-// import Post from "../Post/Post";
+import React, { useState, useEffect } from "react";
 import { getPosts } from "../../../app";
+import { Share, Post } from "../../../components";
 import "./Feed.css";
 
 export default function Feed() {
-  // const [posts, setPosts] = useState();
+  const [posts, setPosts] = useState([]);
+  const data = getPosts();
 
   // useEffect(
   //   () =>
@@ -18,17 +18,18 @@ export default function Feed() {
   // );
 
   useEffect(() => {
-    console.log("useEffect that renders once in Feed");
-    const data = getPosts();
-    console.log("useEffect in Feed when getPost is called: \n", data);
-    // setPosts(data);
+    // console.log("useEffect that renders once in Feed");
+    // console.log("useEffect in Feed when getPost is called: \n", data);
+    setPosts(data);
   }, []);
 
   return (
     <div className="feedContainer">
       <div className="feedWrapper">
         <Share />
-        {/* {posts || posts.map((data) => <Post key={data.id} post={data} />)} */}
+        {posts.map((data) => (
+          <Post key={data.id} post={data} />
+        ))}
       </div>
     </div>
   );

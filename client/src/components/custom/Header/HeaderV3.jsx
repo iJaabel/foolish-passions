@@ -1,7 +1,7 @@
 import React from "react";
 import { Search, Person, Chat, Notifications } from "@material-ui/icons";
-import "./Header.css";
 import { Link } from "react-router-dom";
+import "./Header.css";
 
 export default function HeaderV3() {
   return (
