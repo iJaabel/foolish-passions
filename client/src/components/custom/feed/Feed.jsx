@@ -1,34 +1,20 @@
-import React, { useState, useEffect } from "react";
-import { getPosts } from "../../../app";
+import React from "react";
+import { getPosts, getUser, store } from "../../../app";
 import { Share, Post } from "../../../components";
 import "./Feed.css";
 
 export default function Feed() {
-  const [posts, setPosts] = useState([]);
-  const data = getPosts();
-
-  // useEffect(
-  //   () =>
-  //     console.log(
-  //       "useEffect from Feed, dependant on it's state:\n",
-  //       posts,
-  //       "\nintended to retreive post fromn DB and save as state"
-  //     ),
-  //   [posts]
-  // );
-
-  useEffect(() => {
-    // console.log("useEffect that renders once in Feed");
-    // console.log("useEffect in Feed when getPost is called: \n", data);
-    setPosts(data);
-  }, []);
+  getPosts();
+  getUser()
+  const state = store.getState();
+  const data = state.post.data;
 
   return (
     <div className="feedContainer">
       <div className="feedWrapper">
         <Share />
-        {posts.map((data) => (
-          <Post key={data.id} post={data} />
+        {data.map((p) => (
+          <Post key={p.id} post={p} />
         ))}
       </div>
     </div>

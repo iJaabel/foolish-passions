@@ -1,59 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./Post.css";
 import { MoreVert } from "@material-ui/icons";
-import { Users, Comments } from "../../../dummy/data";
-import { getUser } from "../../../app";
 // https://youtu.be/zM93yZ_8SvE?t=5214
 // https://youtu.be/pFHyZvVxce0?t=1648
 
 export default function Post({ post }) {
-  const [user, setUser] = useState({});
+  // useEffect(() => {}, []);
   const [like, setLike] = useState(post.likes.length);
   const [isLike, setIsLike] = useState(false);
-  const thisUser = getUser();
-  
+
   const likeHandler = () => {
     setLike(isLike ? like - 1 : like + 1);
     setIsLike(!isLike);
   };
-
-  // useEffect(
-  //   () =>
-  //     console.log(
-  //       "useEffect in <Post /> component dependant on like state:\n",
-  //       like,
-  //       "and isLike state:\n",
-  //       isLike
-  //     ),
-  //   [like, isLike]
-  // );
-
-  useEffect(() => {
-    setUser(thisUser);
-  }, []);
-
-  // --- ---
-
-  const findUser = (userIdIAmLookingFor) => {
-    const foundUser = Users.filter((u) => u.id === userIdIAmLookingFor);
-    if (foundUser === undefined || null || NaN || 0 || false) {
-      console.log("no user found");
-      return;
-    }
-    return foundUser;
-  };
-
-  const findPostComments = (commentsPostIdIAmLookingFor) => {
-    const foundComments = Comments.filter(
-      (c) => c.postId === commentsPostIdIAmLookingFor
-    );
-    if (!foundComments) {
-      console.log("no comments found");
-      return;
-    }
-    return foundComments;
-  };
-  // console.log(`findPostComment: \n`, findPostComments(post?.id));
 
   return (
     <div className="postContainer">
@@ -62,11 +21,11 @@ export default function Post({ post }) {
           <div className="postTopLeft">
             <img
               className="postProfileImg"
-              src={findUser(post.userId)[0].image || "/no-avatar.png"}
+              src={post.userId[0].image || "/no-avatar.png"}
               alt="post profile"
             />
             <span className="postUsername">
-              {findUser(post.userId)[0].username}
+              {post.userId[0].username}
             </span>
             <span className="postDate">{post.date}</span>
           </div>
@@ -98,7 +57,7 @@ export default function Post({ post }) {
           </div>
           <div className="postBottomRight">
             <span className="postCommentText">
-              {findPostComments(post.id).length} Comments
+              {post.comments.length} Comments
             </span>
           </div>
         </div>

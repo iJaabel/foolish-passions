@@ -2,55 +2,38 @@
 import axios from "axios";
 import { store } from "./index";
 
-const postsTLEndPoint = `http://localhost:8800/api/posts/timeline/`;
-const userEndPoint = `http://localhost:8800/api/users/`;
-const sampleId = `61be16d1a17c985d2a2f2651`;
+const api = `http://localhost:8800/api/`;
+const postsTLEndPoint = `posts/timeline/`;
+const userEndPoint = `users/`;
+
+const samplePostId = `61be16d1a17c985d2a2f2651`;
+const sampleUserId = `61be16d1a17c985d2a2f2651`
+
+const unsubscribe = store.subscribe(() => {
+  console.log("State after dispatch:\n", store.getState());
+});
 
 export async function getPosts() {
-  console.log(
-    "1st getPosts function in network just started. Logging store.getState:\n",
-    store.getState()
-  );
-
-  const unsubscribe = store.subscribe(() => {
-    console.log("State after dispatch:\n", store.getState());
-  });
-
-
-  const res = await axios.get(postsTLEndPoint + sampleId);
-
-
-  console.log(
-    "2nd getPosts function in network has completed. Logging store.getState:\n",
-    store.getState()
-  );
-
-  unsubscribe();
-
-  return res.data;
+  store.dispatch({ type: "post/isPending" });
+  try {
+    const res = await axios.get(api + postsTLEndPoint + samplePostId);
+    store.dispatch({ type: "post/pendingSuccess", payload: res.data });
+    const state = store.getState();
+    return state.post;
+  } catch (error) {
+    throw new Error(error);
+  }
 }
 
 export async function getUser() {
-  console.log(
-    "1st getUser function in network just started. Logging store.getState:\n",
-    store.getState()
-  );
-  store.dispatch({ type: "isPending", payload: true });
-
-  const res = await axios.get(userEndPoint + sampleId);
-
-  store.dispatch({ type: "pendingSuccess", payload: res.data });
-
-  console.log(
-    "2nd completing getUser function in network. Logging store.getState:\n",
-    store.getState()
-  );
-  return res.data;
-
-  // console.log(
-  //   "getUser network data after await:\n",
-  //   res,
-  //   "\nand it's res.data:\n",
-  //   res.data
-  // );
+  store.dispatch({ type: "user/isPending" });
+  try {
+    const res = await axios.get(api + userEndPoint + sampleUserId);
+    store.dispatch({ type: "user/pendingSuccess", payload: res.data });
+    const state = store.getState();
+    return state.user;
+  } catch (error) {
+    throw new Error(error);
+  }
 }
+unsubscribe();

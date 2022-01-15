@@ -20,7 +20,10 @@ const PostSchema = new db.Schema(
       type: Array,
       default:[]
     },
-
+    comments:{
+      type: Array,
+      default:[]
+    },
   },
   { timestamps: true }
 );
