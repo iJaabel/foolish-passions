@@ -4,9 +4,13 @@ import { basic as initialState } from "./state";
 export const postSlice = createSlice({
   name: "post",
   initialState,
-  reducers:{
+  reducers: {
     isPending: (state) => ({ ...state, pending: true }),
-    pendingRejected: (state) => ({ ...state, pending: null }),
+    pendingRejected: (state, action) => ({
+      ...state,
+      pending: null,
+      error: action.payload,
+    }),
     pendingSuccess: (state, action) => ({
       ...state,
       pending: null,
@@ -15,5 +19,5 @@ export const postSlice = createSlice({
   },
 });
 
-export const { isPending,pendingRejected, pendingSuccess  } = postSlice.actions;
+export const { isPending, pendingRejected, pendingSuccess } = postSlice.actions;
 export default postSlice.reducer;

@@ -4,7 +4,7 @@ const bcrypt = require("bcryptjs");
 exports.user = async (req, res, next) => {
   // console.log(req, "^^^req");
   // 1. get user
-  const user = await User.schema.findById(req.params.id);
+  const user = await User.findById(req.params.id);
   // 2. sanitize
   const { password, updatedAt, ...other } = user._doc;
   // 3. return the user
@@ -14,8 +14,8 @@ exports.user = async (req, res, next) => {
 
 exports.follow = async (req, res, next) => {
   if (req.body.userId !== req.params.id) {
-    const user = await User.schema.findById(req.params.id);
-    const currentUser = await User.schema.findById(req.body.userId);
+    const user = await User.findById(req.params.id);
+    const currentUser = await User.findById(req.body.userId);
     if (!user.followers.includes(req.body.userId)) {
       await user.updateOne({ $push: { followers: req.body.userId } });
       await currentUser.updateOne({ $push: { following: req.params.id } });
@@ -30,8 +30,8 @@ exports.follow = async (req, res, next) => {
 
 exports.unfollow = async (req, res, next) => {
   if (req.body.userId !== req.params.id) {
-    const user = await User.schema.findById(req.params.id);
-    const currentUser = await User.schema.findById(req.body.userId);
+    const user = await User.findById(req.params.id);
+    const currentUser = await User.findById(req.body.userId);
     if (user.followers.includes(req.body.userId)) {
       await user.updateOne({ $pull: { followers: req.body.userId } });
       await currentUser.updateOne({ $pull: { following: req.params.id } });

@@ -6,7 +6,7 @@ const PostSchema = new db.Schema(
       type: String,
       require: true
     },
-    desc:{
+    body:{
       type: String,
       max: 500
     },
@@ -16,7 +16,7 @@ const PostSchema = new db.Schema(
     vid:{
       type: String,
     },
-    likes:{
+    reactions:{
       type: Array,
       default:[]
     },

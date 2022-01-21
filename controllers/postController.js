@@ -1,5 +1,5 @@
 const Post = require("../models/Post");
-const User = require("../models/User")
+const User = require("../models/User");
 /** */
 
 exports.post = async (req, res, next) => {
@@ -11,11 +11,17 @@ exports.timeline = async (req, res, next) => {
   const currentUser = await User.findById(req.params.userId);
   const userPosts = await Post.find({ userId: currentUser._id });
   const followingPosts = await Promise.all(
-    currentUser.following.map((id) => {
-      return Post.find({ userId: id });
-    })
+    currentUser.following.map((id) => Post.find({ userId: id }))
   );
   res.status(200).json(userPosts.concat(...followingPosts));
+};
+
+exports.profile = async (req, res, next) => {
+  const user = await User.find({ username: req.params.username });
+  console.log(req.params.username, user);
+  const posts = await Post.find({ userId: user._id });
+  console.log(posts);
+  res.status(200).json(posts);
 };
 
 exports.like = async (req, res, next) => {

@@ -11,6 +11,7 @@ const use = (fn) => (req, res, next) =>
   Promise.resolve(fn(req, res, next)).catch(next);
 
 /** Posts endpoints */
+api.get("/api/profile/:username", use(postController.profile));
 api.get("/api/posts/:id", use(postController.post));
 api.get("/api/posts/timeline/:userId", use(postController.timeline));
 

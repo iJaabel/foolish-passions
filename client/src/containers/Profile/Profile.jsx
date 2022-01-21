@@ -3,6 +3,7 @@ import "./Profile.css";
 import { Header, Leftbar, Rightbar, Feed } from "../../components";
 
 export default function Profile() {
+
   return (
     <>
       <Header />
@@ -30,7 +31,7 @@ export default function Profile() {
             </div>
           </div>
           <div className="profileRightBottom">
-            <Feed />
+            <Feed username="john" />
             <Rightbar profile />
           </div>
         </div>
