@@ -1,6 +1,5 @@
 const Post = require("../models/Post");
 const User = require("../models/User");
-/** */
 
 exports.post = async (req, res, next) => {
   const post = await Post.findById(req.params.id);

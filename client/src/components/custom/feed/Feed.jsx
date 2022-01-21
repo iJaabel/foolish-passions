@@ -12,7 +12,7 @@ export default function Feed({ username }) {
 
   useEffect(() => getUser(), []);
 
-  useEffect( () => username ? getProfilePosts(username) : getTimelinePosts(), []);
+  useEffect(() => {username ? getProfilePosts(username) : getTimelinePosts()}, []);
 
   return (
     <div className="feedContainer">

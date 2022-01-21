@@ -5,14 +5,11 @@ import { getUserById } from "../../../app";
 import { MoreVert } from "@material-ui/icons";
 import moment from "moment";
 import "./Post.css";
-// https://youtu.be/zM93yZ_8SvE?t=5214
-// https://youtu.be/pFHyZvVxce0?t=1648
 
 export default function Post({ post }) {
   const [like, setLike] = useState(post.likes.length);
   const [isLike, setIsLike] = useState(false);
   const { userId } = post;
-  console.log("this is suppose to be a userId:\n", userId);
   const userData = useSelector((state) => state.user.data);
   const userWhoPosted = userData[0];
 
@@ -55,7 +52,7 @@ export default function Post({ post }) {
         </div>
         <div className="postCenter">
           <span className="postText">{post?.body || post?.desc}</span>
-          <img className="postImg" src={post?.img} alt="in post" />
+          {/* <img className="postImg" src={post?.img} alt="in post" /> */}
         </div>
         <div className="postBottom">
           <div className="postBottomLeft">

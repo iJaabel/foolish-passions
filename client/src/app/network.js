@@ -2,6 +2,7 @@
 import axios from "axios";
 import { store } from "./index";
 
+// remember to handle these
 const api = `http://localhost:8800/api/`;
 const postsTLEndPoint = `posts/timeline/`;
 const userEndPoint = `users/`;
@@ -11,11 +12,16 @@ const profileEndPoint = `profile/`;
 const sampleUserId = `61be16d1a17c985d2a2f2651`;
 
 /**
- * C.R.U.D
+ * All A.P.I calls will be handled here. 
+ * C.R.U.D operations will be store in state.
+ * 
+ * Subscribe operations are here during development
+ * so that the state is logged in the console on update
  */
 
-// Create
+// *** Posts ***
 
+// Create
 // Read
 export async function getTimelinePosts() {
   const unsubscribe = store.subscribe(() => {
@@ -42,7 +48,7 @@ export async function getProfilePosts({ username }) {
     console.log("State after dispatch:\n", store.getState());
   });
 
-  if (username === undefined || null || NaN || "style.css") {
+  if (username === undefined || null || NaN) {
     unsubscribe();
     return;
   }
@@ -59,9 +65,13 @@ export async function getProfilePosts({ username }) {
   }
   unsubscribe();
 }
+// Update
+// Delete
 
-// ===
+// *** Users ***
 
+// Create
+// Read
 export async function getUser() {
   const unsubscribe = store.subscribe(() => {
     console.log("State after dispatch:\n", store.getState());
