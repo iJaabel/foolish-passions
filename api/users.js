@@ -10,7 +10,7 @@ const use = (fn) => (req, res, next) =>
   Promise.resolve(fn(req, res, next)).catch(next);
 
   /** account endpoints */
-api.get("/api/users/:id", use(userController.user));
+api.get("/api/users/", use(userController.user));
 
 api.put("/api/users/:id/follow", use(userController.follow));
 api.put("/api/users/:id/unfollow", use(userController.unfollow));

@@ -2,14 +2,14 @@ const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 
 exports.user = async (req, res, next) => {
-  // console.log(req, "^^^req");
-  // 1. get user
-  const user = await User.findById(req.params.id);
-  // 2. sanitize
+  const userId = req.query.userId;
+  const username = req.query.username;
+
+  const user = userId
+    ? await User.findById(req.params.id)
+    : await User.findOne({ username });
   const { password, updatedAt, ...other } = user._doc;
-  // 3. return the user
   res.status(200).json(other);
-  // console.log(res,'^^^res', other, '^^^other',);
 };
 
 exports.follow = async (req, res, next) => {

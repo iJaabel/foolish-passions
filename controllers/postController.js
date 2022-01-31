@@ -5,6 +5,12 @@ exports.post = async (req, res, next) => {
   const post = await Post.findById(req.params.id);
   res.status(200).json(post);
 };
+/** 
+* This is where the timeline logic is place. 
+* must rearrange these so that it reflects
+* clean Architecture.
+* 
+*/
 
 exports.timeline = async (req, res, next) => {
   const currentUser = await User.findById(req.params.userId);
@@ -17,9 +23,7 @@ exports.timeline = async (req, res, next) => {
 
 exports.profile = async (req, res, next) => {
   const user = await User.find({ username: req.params.username });
-  console.log(req.params.username, user);
-  const posts = await Post.find({ userId: user._id });
-  console.log(posts);
+  const posts = await Post.find({ userId: user[0]._id });
   res.status(200).json(posts);
 };
 

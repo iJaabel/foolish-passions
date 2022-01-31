@@ -4,6 +4,14 @@ import { Provider } from "react-redux";
 import { App, store } from "./app";
 
 // import * as serviceWorker from './serviceWorker';
+/** When it comes to the application
+* one must follow the methodlogies of clean 
+* architecture. App side logic should include:
+* state manament 
+* fetching data from he backend
+* 
+*/
+
 
 render(
   <Provider store={store}>

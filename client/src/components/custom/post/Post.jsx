@@ -10,40 +10,42 @@ export default function Post({ post }) {
   const [like, setLike] = useState(post.likes.length);
   const [isLike, setIsLike] = useState(false);
   const { userId } = post;
-  const userData = useSelector((state) => state.user.data);
-  const userWhoPosted = userData[0];
+  const userDataIsPending = useSelector((state) => state.user.pending);
+  const userWhoPosted = useSelector((state) => state.user.data);
 
   const likeHandler = () => {
     setLike(isLike ? like - 1 : like + 1);
     setIsLike(!isLike);
   };
 
-  useEffect(() => getUserById(userId), [userId]);
+  useEffect(() => {
+    getUserById(userId);
+  }, [userId]);
 
-  useEffect(
-    () =>
-      console.log(
-        "on mount in post component, we see the post object:\n",
-        post,
-        "\n and we take a look at the user:\n",
-        userWhoPosted
-      ),
-    [post, userWhoPosted]
-  );
+  // useEffect(
+  //   () =>
+  //     console.log(
+  //       "on mount in post component, we see the post object:\n",
+  //       post,
+  //       "\n and we take a look at the user:\n",
+  //       userWhoPosted
+  //     ),
+  //   [post, userWhoPosted]
+  // );
 
   return (
     <div className="postContainer">
       <div className="postWrapper">
         <div className="postTop">
           <div className="postTopLeft">
-            <Link to={`profile/${userWhoPosted.username}`}>
+            <Link to={`profile/${userDataIsPending ? null : userWhoPosted.username}`}>
               <img
                 className="postProfileImg"
-                src={userWhoPosted.profilePicture || "/no-avatar.png"}
+                src={userDataIsPending ? null : userWhoPosted.profilePicture || "/no-avatar.png"}
                 alt="post profile"
               />
             </Link>
-            <span className="postUsername">{userWhoPosted.username}</span>
+            <span className="postUsername">{userDataIsPending ? null : userWhoPosted.username}</span>
             <span className="postDate">{moment(post.createdAt).fromNow()}</span>
           </div>
           <div className="postTopRight">

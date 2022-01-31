@@ -8,11 +8,20 @@ export default function Feed({ username }) {
   const data = useSelector((state) => state.post.data);
   const isPending = useSelector((state) => state.post.pending);
 
-  const renderFeedPosts = data.map((p) => <Post key={p._id} post={p} />);
+  const renderFeedPosts = data.map((p) => {
+    if ((p !== undefined || null || NaN)) {
+      return <Post key={p._id} post={p} />;
+    }
+    return p
+  });
 
-  useEffect(() => getUser(), []);
+  useEffect(() => {
+    getUser();
+  }, []);
 
-  useEffect(() => {username ? getProfilePosts(username) : getTimelinePosts()}, []);
+  useEffect(() => {
+    username ? getProfilePosts(username) : getTimelinePosts();
+  }, [username]);
 
   return (
     <div className="feedContainer">

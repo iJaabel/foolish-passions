@@ -1,22 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { basic as initialState } from "./state";
+import { basic as reducers } from "./reducer";
 
 export const userSlice = createSlice({
   name: "user",
   initialState,
-  reducers: {
-    isPending: (state) => ({ ...state, pending: true }),
-    pendingRejected: (state, action) => ({
-      ...state,
-      pending: null,
-      error: action.payload,
-    }),
-    pendingSuccess: (state, action) => ({
-      ...state,
-      pending: null,
-      data: [...state.data, action.payload],
-    }),
-  },
+  reducers,
 });
 
 export const { isPending, pendingRejected, pendingSuccess } = userSlice.actions;
