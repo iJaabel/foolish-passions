@@ -9,28 +9,35 @@ import { store } from "./index";
  * so that the state is logged in the console on update
  *
  * Most of these functions can be consolidated
+ * 
+ * current working exports
+ * getTimelinePosts() : takes userId, only sends sampleUserId for now
+ * getProfilePosts(username) : takes the username and returns that profile's posts
+ * getProfileById(userId) : gets the profile information
+ * getUser(username) : finds user with the byUsername params
+ * getUserById(userId) : gets the user obj from database by userId
+ * 
  */
 
-// remember to handle these
+// remember to handle these string paths and place them into .env
 const api = `http://localhost:8800/api/`;
+
 const postsTLEndPoint = `posts/timeline/`;
+// const postEndPoint = `posts/`
 const userEndPoint = `users/`;
 const profileEndPoint = `profile/`;
-const byUsername = `?username=`
-const byUserId = `?userId=`
-// const postEndPoint = `posts/`
+
 // const likes = `like/`
 // const follow = `follow/`
 // const unfollow = `unfollow/`
 
+const byUsername = `?username=`
+const byUserId = `?userId=`
+
 // const samplePostId = `61be1f53392116a72bb354a8`;
 const sampleUserId = `61be16d1a17c985d2a2f2651`;
 
-
-
-
-// *** Posts ***
-// Create
+// *** Posts *** Read/Write
 
 export async function network(type, { post, user, userId, postId }, fn) {
   //type must be a string
@@ -57,7 +64,7 @@ export async function getTimelinePosts() {
     console.log("State after dispatch:\n", store.getState());
   });
   store.dispatch({ type: "post/isPending" });
-  
+
   try {
     const res = await axios.get(api + postsTLEndPoint + sampleUserId);
     store.dispatch({ type: "post/pendingSuccess", payload: res.data });
@@ -69,7 +76,7 @@ export async function getTimelinePosts() {
   unsubscribe();
 }
 
-export async function getProfilePosts(username) {
+export async function getProfilePosts({ username }) {
   const unsubscribe = store.subscribe(() => {
     console.log("State after dispatch:\n", store.getState());
   });
@@ -83,48 +90,46 @@ export async function getProfilePosts(username) {
 
   try {
     const res = await axios.get(api + profileEndPoint + username);
-    store.dispatch({ type: "post/pendingSuccess", payload: res.data });
+    if (res) store.dispatch({ type: "post/pendingSuccess", payload: res.data });
   } catch (error) {
     store.dispatch({ type: "post/pendingRejected", payload: error });
     console.error(error.name, error.message);
   }
   unsubscribe();
 }
-// Update is write
-export async function getProfileById(userId) {
+
+export async function getProfileById({ userId }) {
   const unsubscribe = store.subscribe(() => {
     console.log("State on change", store.getState())
   })
-  if(userId === undefined || null || NaN) {
+  if (userId === undefined || null || NaN) {
     unsubscribe()
     return
   }
-  store.dispatch({type: "post/isPending"})
+  store.dispatch({ type: "post/isPending" })
   try {
     const res = await axios.get(api + profileEndPoint + userId)
-    store.dispatch({type: "post/pendingSuccess", payload: res.data})
-  } catch (error){
+    if (res) store.dispatch({ type: "post/pendingSuccess", payload: res.data })
+  } catch (error) {
     store.dispatch({
       type: "post/pendingRejected", payload: error
     })
-    console.error({message: error.message})
+    console.error({ message: error.message })
   }
 }
-// Delete
 
 // *** Users ***
-
-// Create
-export async function createUser(user) {
-  cont unsubscribe = store.subscribe(()=>{
+export async function createUser({ user }) {
+  const unsubscribe = store.subscribe(() => {
     console.log("State on update: \n", store.getState())
   })
 }
-// Read
-export async function getUser(username) {
+
+export async function getUser({ username }) {
   const unsubscribe = store.subscribe(() => {
     console.log("State after dispatch:\n", store.getState());
   });
+
   if (username === undefined || null || NaN) {
     unsubscribe()
     return
@@ -141,7 +146,6 @@ export async function getUser(username) {
 
     console.error(error.name, error.message);
   }
-
   unsubscribe();
 }
 
@@ -168,6 +172,3 @@ export async function getUserById({ userId }) {
 
   unsubscribe();
 }
-
-// Update
-// Delete

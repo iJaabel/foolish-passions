@@ -1,12 +1,18 @@
 import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
-import { getProfilePosts, getTimelinePosts, getUser } from "../../../app";
 import { Share, Post } from "../../../components";
+import { getProfilePosts, getTimelinePosts } from "../../../app";
 import "./Feed.css";
 
-export default function Feed({ username }) {
-  const data = useSelector((state) => state.post.data);
-  const isPending = useSelector((state) => state.post.pending);
+// takes in user name and returns a feed with all post
+
+/**
+ * Takes in a parameter to toggle between timeline feed or profile
+ * data should be handled in it's container
+ * this component must not have any network calls 
+ * nor getState commands. data get's passed down
+ */
+
+export default function Feed({ username, data }) {
 
   const renderFeedPosts = data.map((p) => {
     if ((p !== undefined || null || NaN)) {
@@ -16,18 +22,20 @@ export default function Feed({ username }) {
   });
 
   useEffect(() => {
-    getUser();
-  }, []);
-
-  useEffect(() => {
-    username ? getProfilePosts(username) : getTimelinePosts();
+    if (username) {
+      // these are network calls that should be in state already
+      //all data in state should be passed down
+      getProfilePosts(username);
+    } else {
+      getTimelinePosts();
+    }
   }, [username]);
 
   return (
     <div className="feedContainer">
       <div className="feedWrapper">
         <Share />
-        {isPending ? null : renderFeedPosts}
+        {renderFeedPosts}
       </div>
     </div>
   );
