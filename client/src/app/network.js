@@ -125,15 +125,15 @@ export async function createUser({ user }) {
   })
 }
 
-export async function getUser({ username }) {
+export async function getUser(username) {
   const unsubscribe = store.subscribe(() => {
     console.log("State after dispatch:\n", store.getState());
   });
-
   if (username === undefined || null || NaN) {
     unsubscribe()
     return
   }
+  console.log()
   store.dispatch({ type: "user/isPending" });
   try {
     const res = await axios.get(api + userEndPoint + byUsername + username);

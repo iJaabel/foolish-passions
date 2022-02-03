@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { Share, Post } from "../../../components";
-import { getProfilePosts, getTimelinePosts } from "../../../app";
 import "./Feed.css";
 
 // takes in user name and returns a feed with all post
@@ -25,9 +24,9 @@ export default function Feed({ username, data }) {
     if (username) {
       // these are network calls that should be in state already
       //all data in state should be passed down
-      getProfilePosts(username);
+      //logic should determine which data set in state to pull
     } else {
-      getTimelinePosts();
+      // getTimelinePosts();
     }
   }, [username]);
 

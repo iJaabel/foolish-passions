@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import Routes from "./Routes";
-import { getUser } from "./network"
+import { getUser, getProfilePosts, getTimelinePosts } from "./network"
+import { store } from "./index"
 
 /** High level interaction layer
  * When the app renders,
@@ -10,10 +11,18 @@ import { getUser } from "./network"
  * gets the profile posts
  * 
  */
+
 export default () => {
+    const state = store.getState()
+    console.log("app is starting up...\n This is state in Interactive layer:\n", state)
+    const username = "john"
     useEffect(() => {
         //All networking shall be called here and set to state
-        getUser();
+        console.log("Interactive layer useEffect on component mount is running...")
+        getUser(username);
+        getTimelinePosts()
+        getProfilePosts()
+        console.log("api calls have ran, checking start on completion:\n", state)
     }, []);
     return (<Routes />)
 }
