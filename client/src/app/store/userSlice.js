@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { basic as initialState } from "./state";
-import { basic as reducers } from "./reducer";
+import { stage2 as initialState } from "./state";
+import { stage2 as reducers } from "./reducer";
 
 export const userSlice = createSlice({
   name: "user",

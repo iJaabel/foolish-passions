@@ -4,7 +4,7 @@ export const basic = {
   error: {},
 };
 
-export const global = {
+export const stage2 = {
   activeUser: {},
   posts: {
     timeline: [],

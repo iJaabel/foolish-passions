@@ -67,7 +67,7 @@ export async function getTimelinePosts() {
 
   try {
     const res = await axios.get(api + postsTLEndPoint + sampleUserId);
-    store.dispatch({ type: "post/pendingSuccess", payload: res.data });
+    store.dispatch({ type: "user/storeTimelinePosts", payload: res.data });
   } catch (error) {
     store.dispatch({ type: "post/pendingRejected", payload: error });
     console.error(error.name, error.message);
@@ -76,7 +76,7 @@ export async function getTimelinePosts() {
   unsubscribe();
 }
 
-export async function getProfilePosts({ username }) {
+export async function getProfilePosts( username ) {
   const unsubscribe = store.subscribe(() => {
     console.log("State after dispatch:\n", store.getState());
   });
@@ -90,7 +90,8 @@ export async function getProfilePosts({ username }) {
 
   try {
     const res = await axios.get(api + profileEndPoint + username);
-    if (res) store.dispatch({ type: "post/pendingSuccess", payload: res.data });
+    console.log("what is response in getProfilePosts: \n", res.data)
+    if (res) store.dispatch({ type: "user/storeProfilePosts", payload: res.data });
   } catch (error) {
     store.dispatch({ type: "post/pendingRejected", payload: error });
     console.error(error.name, error.message);

@@ -12,17 +12,27 @@ export const basic = {
   }),
 }
 
-export const global = {
+export const stage2 = {
   isPending: (state) => ({ ...state, pending: true }),
   pendingRejected: (state, action) => ({
     ...state,
     pending: null,
     error: action.payload,
   }),
-  pendingSuccess: (state, { payload }) => ({
+  storeTimelinePosts: (state, { payload }) => ({
     ...state,
     pending: null,
-    activeUser: payload.activeUser,
-    posts: payload.posts
+    posts: {
+      timeline: payload,
+      profile: state.posts.profile,
+    },
+  }),
+  storeProfilePosts: (state, { payload }) => ({
+    ...state,
+    pending: null,
+    posts: {
+      timeline: state.posts.timeline,
+      profile: payload,
+    },
   }),
 }

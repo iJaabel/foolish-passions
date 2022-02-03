@@ -14,15 +14,15 @@ import { store } from "./index"
 
 export default () => {
     const state = store.getState()
-    console.log("app is starting up...\n This is state in Interactive layer:\n", state)
-    const username = "john"
+    // console.log("app is starting up...\n This is state in Interactive layer:\n", state)
+    const username = "Jane"
     useEffect(() => {
         //All networking shall be called here and set to state
-        console.log("Interactive layer useEffect on component mount is running...")
+        // console.log("Interactive layer useEffect on component mount is running...")
         getUser(username);
         getTimelinePosts()
-        getProfilePosts()
-        console.log("api calls have ran, checking start on completion:\n", state)
+        getProfilePosts(username)
+        // console.log("api calls have ran, checking state on completion:\n", state)
     }, []);
     return (<Routes />)
 }
