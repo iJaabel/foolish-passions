@@ -8,14 +8,17 @@ import "./Post.css";
 
 export default function Post({ post }) {
   const [like, setLike] = useState(post.likes.length);
-  const [isLike, setIsLike] = useState(false);
+  const [isLiked, setIsLike] = useState(false);
+
   const { userId } = post;
+  console.log("what is in the post pass down?:\n", post)
+
   const userDataIsPending = useSelector((state) => state.user.pending);
   const userWhoPosted = useSelector((state) => state.user.data);
 
   const likeHandler = () => {
-    setLike(isLike ? like - 1 : like + 1);
-    setIsLike(!isLike);
+    setLike(isLiked ? like - 1 : like + 1);
+    setIsLike(!isLiked);
   };
 
   useEffect(() => {

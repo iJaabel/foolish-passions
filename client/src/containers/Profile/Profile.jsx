@@ -1,18 +1,13 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import { Header, Leftbar, Rightbar, Feed } from "../../components";
-import { getUser, getProfilePosts } from "../../app";
 import "./Profile.css";
 
-export default function Profile({match}) {
+export default function Profile({ match }) {
+  //this data must be passed instead of 
   const userData = useSelector((state) => state.user.data[0]);
   const userDataIsPending = useSelector((state) => state.user.pending);
   const username = match.params.username
-
-  useEffect(() => {
-    getUser(username);
-    getProfilePosts(username)
-  }, []);
 
   return (
     <>

@@ -13,15 +13,13 @@ export const basic = {
 }
 
 export const stage2 = {
-  isPending: (state) => ({ ...state, pending: true }),
+  isPending: (state) => ({ ...state, pending: !state.pending }),
   pendingRejected: (state, action) => ({
     ...state,
-    pending: null,
     error: action.payload,
   }),
   storeTimelinePosts: (state, { payload }) => ({
     ...state,
-    pending: null,
     posts: {
       timeline: payload,
       profile: state.posts.profile,
@@ -29,10 +27,13 @@ export const stage2 = {
   }),
   storeProfilePosts: (state, { payload }) => ({
     ...state,
-    pending: null,
     posts: {
       timeline: state.posts.timeline,
       profile: payload,
     },
+  }),
+  storeActiveUser: (state, { payload }) => ({
+    ...state,
+    activeUser: payload,
   }),
 }

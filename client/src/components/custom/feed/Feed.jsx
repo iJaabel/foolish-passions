@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Share, Post } from "../../../components";
 import "./Feed.css";
 
@@ -12,29 +12,22 @@ import "./Feed.css";
  */
 
 export default function Feed({ username, data }) {
+  const handleFeed = () => {
+    if (username) return
+    if (data === undefined || null || NaN) return
+    const renderFeedPosts = data.map((p) => p === undefined || null || NaN ? null : <Post key={p._id} post={p} />)
+    return renderFeedPosts
+  }
+  const postArr = handleFeed()
 
-  const renderFeedPosts = data.map((p) => {
-    if ((p !== undefined || null || NaN)) {
-      return <Post key={p._id} post={p} />;
-    }
-    return p
-  });
-
-  useEffect(() => {
-    if (username) {
-      // these are network calls that should be in state already
-      //all data in state should be passed down
-      //logic should determine which data set in state to pull
-    } else {
-      // getTimelinePosts();
-    }
-  }, [username]);
+  // useEffect(() => {
+  // }, [])
 
   return (
     <div className="feedContainer">
       <div className="feedWrapper">
         <Share />
-        {renderFeedPosts}
+        {postArr}
       </div>
     </div>
   );

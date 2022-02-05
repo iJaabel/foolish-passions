@@ -5,11 +5,17 @@ export const basic = {
 };
 
 export const stage2 = {
-  activeUser: {},
+  activeUser: false,
   posts: {
     timeline: [],
     profile: [],
   },
-  pending: null,
+  pending: false,
   error: {}
+}
+
+export const lamaState = {
+  user: null,
+  isfetching: null,
+  error: false
 }
