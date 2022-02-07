@@ -34,6 +34,6 @@ export const stage2 = {
   }),
   storeActiveUser: (state, { payload }) => ({
     ...state,
-    activeUser: payload,
+    ...payload,
   }),
 }

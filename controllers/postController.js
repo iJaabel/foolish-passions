@@ -1,34 +1,37 @@
-const Post = require("../models/Post");
-const User = require("../models/User");
+const PostDB = require("../models/Post");
+const UserDB = require("../models/User");
 
 exports.post = async (req, res, next) => {
-  const post = await Post.findById(req.params.id);
+  const post = await PostDB.findById(req.params.id);
   res.status(200).json(post);
 };
 /** 
 * This is where the timeline logic is place. 
 * must rearrange these so that it reflects
 * clean Architecture.
-* 
+* userIDs:
+* Tom: 61fe02d5c66d6eadee1de28e
+* 61bcafe5fe354c9ba9e25316
+ * 61bcc152c2229e29b52366cb
 */
 
 exports.timeline = async (req, res, next) => {
-  const currentUser = await User.findById(req.params.userId);
-  const userPosts = await Post.find({ userId: currentUser._id });
+  const currentUser = await UserDB.findById(req.params.userId);
+  const userPosts = await PostDB.find({ userId: currentUser._id });
   const followingPosts = await Promise.all(
-    currentUser.following.map((id) => Post.find({ userId: id }))
+    currentUser.following.map((id) => PostDB.find({ userId: id }))
   );
   res.status(200).json(userPosts.concat(...followingPosts));
 };
 
 exports.profile = async (req, res, next) => {
-  const user = await User.find({ username: req.params.username });
-  const posts = await Post.find({ userId: user[0]._id });
+  const user = await UserDB.find({ username: req.params.username });
+  const posts = await PostDB.find({ userId: user[0]._id });
   res.status(200).json(posts);
 };
 
 exports.like = async (req, res, next) => {
-  const post = await Post.findById(req.params.id);
+  const post = await PostDB.findById(req.params.id);
   if (!post.likes.includes(req.body.userId)) {
     await post.updateOne({ $push: { likes: req.body.userId } });
     res.status(200).json("you liked this post");
@@ -39,13 +42,13 @@ exports.like = async (req, res, next) => {
 };
 
 exports.create = async (req, res, next) => {
-  const newPost = new Post(req.body);
+  const newPost = new PostDB(req.body);
   const savedPost = await newPost.save();
   res.status(200).json(savedPost);
 };
 
 exports.update = async (req, res, next) => {
-  const post = await Post.findById(req.params.id);
+  const post = await PostDB.findById(req.params.id);
   if (post.userId === req.body.userId) {
     await post.updateOne({ $set: req.body });
     res.status(200).json("the post has been updated");
@@ -55,7 +58,7 @@ exports.update = async (req, res, next) => {
 };
 
 exports.remove = async (req, res, next) => {
-  const post = await Post.findById(req.params.id);
+  const post = await PostDB.findById(req.params.id);
   if (post.userId === req.body.userId) {
     await post.deleteOne();
     res.status(200).json("the post has been deleted");

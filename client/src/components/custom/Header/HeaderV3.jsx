@@ -1,9 +1,11 @@
 import React from "react";
-import { Search, Person, Chat, Notifications } from "@material-ui/icons";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux"
+import { Search, Person, Chat, Notifications } from "@material-ui/icons";
 import "./Header.css";
 
 export default function HeaderV3() {
+  const activeUser = useSelector(state => state.user.activeUser)
   return (
     <div className="topbarContainer">
       <div className="topbarLeft">
@@ -39,11 +41,13 @@ export default function HeaderV3() {
             <span className="topbarIconBadge">8</span>
           </div>
         </div>
-        <img
-          src="https://randomuser.me/api/portraits/women/91.jpg"
-          alt="User Profile"
-          className="topbarProfile"
-        />
+        <Link to={`/profile/${activeUser.username}`} >
+          <img
+            src={activeUser.profilePicture ? activeUser.profilePicture : "/no-avatar.png"}
+            alt="User Profile"
+            className="topbarProfile"
+          />
+        </Link>
       </div>
     </div>
   );

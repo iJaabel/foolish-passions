@@ -36,11 +36,11 @@ const UserSchema = new Schema(
     },
     profilePicture: {
       type: String,
-      defaul: "",
+      default: "",
     },
     coverPicture: {
       type: String,
-      defaul: "",
+      default: "",
     },
     followers: {
       type: Array,

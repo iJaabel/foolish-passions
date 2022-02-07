@@ -1,7 +1,7 @@
-import React, {useRef } from "react";
-import {useHistory} from "react-router"
+import React, { useRef } from "react";
+import { useHistory } from "react-router"
 import { Link } from "react-router-dom";
-import {registerUser} from "../../app"
+import { registerUser } from "../../app"
 import "./Register.css";
 
 export default function Register() {
@@ -20,7 +20,7 @@ export default function Register() {
     const p = password.current.value
     const v = verify.current.value
 
-    if (v !== p){
+    if (v !== p) {
       verify.current.setCustomValidity("Passwords don't match!")
     }
 
@@ -34,7 +34,7 @@ export default function Register() {
         password: p,
       }
       registerUser(user)
-        .then(()=>{
+        .then(() => {
           history.push("/login")
         })
     }
@@ -58,9 +58,9 @@ export default function Register() {
             <input placeholder="Password Again" type="password" required ref={verify} className="loginInput" />
             <button className="loginButton" type="submit" >Sign Up</button>
             <button className="loginRegisterButton">
-             <Link to={`/login`} className="loginRegisterButton"> 
-              Already have an account?
-            </Link>
+              <Link to={`/login`} className="loginRegisterButton">
+                Already have an account?
+              </Link>
             </button>
           </form>
         </div>
