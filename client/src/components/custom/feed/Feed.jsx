@@ -13,13 +13,19 @@ import "./Feed.css";
 
 export default function Feed({ username, data }) {
   const handleFeed = () => {
+    console.log("\nwhat's in username?\n\n",username)
     if (username) return
+
+    console.log("\nwhat's in data?\n\n",data)
     if (data === undefined || null || NaN) return
+
     const renderFeedPosts = data.map((p) => p === undefined || null || NaN ? null : <Post key={p._id} post={p} />)
+    console.log("\nwhat is in renderFeedPosts?\n\n",renderFeedPosts)
     return renderFeedPosts
   }
-  const postArr = handleFeed()
 
+  const postArr = handleFeed()
+  console.log("\nwhat is postArr?\n\n",postArr)
   // useEffect(() => {
   // }, [])
 

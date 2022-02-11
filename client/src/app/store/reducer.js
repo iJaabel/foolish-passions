@@ -1,39 +1,59 @@
-export const basic = {
-  isPending: (state) => ({ ...state, pending: true }),
-  pendingRejected: (state, action) => ({
+export const common = {
+  pending: (state) => ({ ...state, pending: !state.pending }),
+  rejected: (state, { payload }) => ({
     ...state,
-    pending: null,
-    error: action.payload,
+    error: payload,
   }),
-  pendingSuccess: (state, action) => ({
+  success: (state, { payload }) => ({
     ...state,
-    pending: null,
-    data: action.payload,
+    data: payload,
   }),
 }
 
-export const stage2 = {
-  isPending: (state) => ({ ...state, pending: !state.pending }),
-  pendingRejected: (state, action) => ({
+export const userReducer = {
+  pending: (state) => ({ ...state, pending: !state.pending }),
+  rejected: (state, { payload }) => ({
     ...state,
-    error: action.payload,
+    error: payload,
   }),
-  storeTimelinePosts: (state, { payload }) => ({
-    ...state,
-    posts: {
-      timeline: payload,
-      profile: state.posts.profile,
-    },
-  }),
-  storeProfilePosts: (state, { payload }) => ({
-    ...state,
-    posts: {
-      timeline: state.posts.timeline,
-      profile: payload,
-    },
-  }),
+
   storeActiveUser: (state, { payload }) => ({
     ...state,
-    ...payload,
+    active: payload,
+    lib: state.lib,
+    pending: state.pending ? !state.pending : state.pending,
+    error: {},
+  }),
+  storeLib: (state, {payload}) => ({
+    ...state,
+    active: state.active,
+    lib: payload,
+    pending: state.pending ? !state.pending : state.pending,
+    error: {},
+  })
+}
+
+export const postReducer = {
+  pending: (state) => ({ ...state, pending: !state.pending }),
+  rejected: (state, { payload }) => ({
+    ...state,
+    pending: state.pending ? !state.pending : state.pending,
+    error: payload,
+  }),
+
+  storeCollection: (state, { payload }) => ({
+    ...state,
+    owner: state.owner,
+    collection: payload,
+    pending: state.pending ? !state.pending : state.pending,
+    error: {},
+  }),
+  storeOwner: (state, { payload }) => ({
+    ...state,
+    owner: payload,
+    collection: state.collection,
+    pending: state.pending ? !state.pending : state.pending,
+    error: {},
   }),
 }
+

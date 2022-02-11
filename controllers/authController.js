@@ -14,17 +14,6 @@ const PostDB = require("../models/Post");
  * 
 */
 
-exports.verify = async (req, res, next) => {
-  const verified = await UserDB.validate({
-    email: req.body.email,
-    password: req.body.password,
-  });
-
-  if (!verified)
-    throw { message: "Please enter the correct email and password" };
-
-  return res.status(200).send({ message: "verified" });
-};
 
 exports.signin = async (req, res, next) => {
 
@@ -36,26 +25,48 @@ exports.signin = async (req, res, next) => {
 
   // --- 
 
-  console.log("\nfirst checkpoint for user object:\n\n", activeUser)
+  // console.log("\nfirst checkpoint for activeUser object:\n\n", activeUser)
 
   //sanitizing the password
   activeUser.password = undefined
 
-  //gets the posts for the user profile
-  const profile = await PostDB.find({ userId: activeUser._id });
-  console.log("\nprofile:\n\n", profile)
+  //gets the posts for the user owner
+  const owner = await PostDB.find({ userId: activeUser._id });
+  // console.log("\nprofile:\n\n", owner)
 
   //gets all the post of how client follows
   const followingPosts = await Promise.all(
     activeUser.following.map((id) => PostDB.find({ userId: id }))
   );
-  console.log("\nfollowingPosts:\n\n", followingPosts)
+  // console.log("\nfollowingPosts:\n\n", followingPosts)
 
-  //creates timeline post first render...
-  const timeline = profile.concat(...followingPosts)
+  //creates collection post first render...
+  const collection = owner.concat(...followingPosts)
+  // console.log("\collection:\n\n", collection)
 
-  const remoteState = { activeUser, posts: { timeline, profile }, }
-  console.log("\nlast checkpoint for remote state:\n\n", remoteState)
+  const buildLib = await Promise.all(
+    collection.map(post => {
+     target = UserDB.findOne({ userId: post.userId })
+     target.password = undefined 
+     return target
+    }))
+
+const lib = buildLib.reduce((acc,curr)=>{ 
+  console.log("this is acc:", acc)
+  console.log("this is curr:", curr)
+  curr._id.includes(acc._id) ? acc : [...acc, curr]
+  }, [])
+
+
+
+  console.log("\nshould look more like a map. this is lib:\n\n",lib)
+
+  
+
+  const active = activeUser
+
+  const remoteState = [{ active, lib }, { collection, owner, },]
+  // console.log("\nlast checkpoint for remote state:\n\n", remoteState)
 
 
   res.status(200).json(remoteState);
@@ -73,4 +84,16 @@ exports.register = async (req, res, next) => {
   const user = await newUser.save();
 
   res.status(200).send({ message: "User was registered" });
+};
+
+exports.verify = async (req, res, next) => {
+  const verified = await UserDB.validate({
+    email: req.body.email,
+    password: req.body.password,
+  });
+
+  if (!verified)
+    throw { message: "Please enter the correct email and password" };
+
+  return res.status(200).send({ message: "verified" });
 };

@@ -4,18 +4,15 @@ export const basic = {
   error: {},
 };
 
-export const stage2 = {
-  activeUser: false,
-  posts: {
-    timeline: [],
-    profile: [],
-  },
+export const users = {
+  active: null,
+  lib:[],
   pending: false,
-  error: {}
+  error: {},
 }
-
-export const lamaState = {
-  user: null,
-  isfetching: null,
-  error: false
+export const posts = {
+  owner:[],
+  collection:[],
+  pending: false,
+  error: {},
 }

@@ -61,24 +61,45 @@ const sampleUserId = `61be16d1a17c985d2a2f2651`;
 // }
 
 export async function login(credentials) {
+
+
   const unsubscribe = store.subscribe(() => {
     console.log("state after dispatch", store.getState())
   })
+
   if (credentials === undefined || null || NaN) {
     unsubscribe()
     throw new Error("Something went wrong")
   }
+
+
   try {
-    store.dispatch({ type: "user/isPending" })
+    store.dispatch({ type: "user/pending" })
+    store.dispatch({ type: "post/pending" })
+
     const res = await axios.post(api + loginEndPoint, credentials)
-    store.dispatch({ type: "user/storeActiveUser", payload: res.data })
-    store.dispatch({ type: "user/isPending" })
+
+    console.log("\nwhat is in the res object?\n\n",res)
+    store.dispatch({ type: "user/storeActiveUser", payload: res.data[0].active })
+    store.dispatch({type:"user/storeLib", payload:res.data[0].lib})
+    store.dispatch({type:"post/storeOwner", payload: res.data[1].owner})
+    store.dispatch({type:"post/storeCollection", payload: res.data[1].collection})
+
   } catch (error) {
-    store.dispatch({ type: "user/pendingRejected", payload: error })
+
+    store.dispatch({ type: "user/rejected", payload: error })
+
     console.error(error.name, error.message)
-    store.dispatch({ type: "user/isPending" })
+
+    store.dispatch({ type: "user/pending" })
+    store.dispatch({ type: "post/pending" })
   }
+
 }
+
+
+
+
 export async function registerUser(user) {
   const unsubscribe = store.subscribe(() => {
     console.log("state after dispatch", store.getState())
