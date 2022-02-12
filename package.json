@@ -11,6 +11,10 @@
     "client-install": "npm i --prefix client",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm i --prefix client && npm run build --prefix client"
   },
+  "engines" : { 
+    "npm" : ">=7.0.0",
+    "node" : ">=16.0.0"
+  },
   "author": "Jaabl",
   "license": "ISC",
   "dependencies": {
