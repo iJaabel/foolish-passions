@@ -3,6 +3,8 @@ export { default as store } from "./store/store";
 export {
   getProfilePosts,
   getTimelinePosts,
-  getUser,
+  getActiveUser,
   getUserById,
+  login,
+  registerUser,
 } from "./network";

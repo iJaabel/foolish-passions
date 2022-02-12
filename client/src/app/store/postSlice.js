@@ -1,12 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { basic as initialState } from "./state";
-import { basic as reducers } from "./reducer";
+import { posts as initialState } from "./state";
+import { postReducer as reducers } from "./reducer";
 
 export const postSlice = createSlice({
   name: "post",
   initialState,
-  reducers
+  reducers,
 });
 
-export const { isPending, pendingRejected, pendingSuccess } = postSlice.actions;
+export const { pending, rejected, storeCollection, storeOwner } = postSlice.actions;
 export default postSlice.reducer;

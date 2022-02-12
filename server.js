@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const path = require('path')
 
 /** config express */
 const bodyParser = require("body-parser");
@@ -19,7 +20,7 @@ dotenv.config();
 /** config mongoDB */
 const mongoose = require('mongoose')
 mongoose.connect(
-  process.env.MONGO_URL,
+  process.env.MONGO_URI,
   { useNewUrlParser: true, useUnifiedTopology: true },
   () => console.log("🕹️  DB connected 🛡️")
 );
@@ -61,6 +62,16 @@ app.use((error, req, res, next) => {
     },
   });
 });
+
+// Serve static assets if in production
+if (process.env.NODE_ENV === 'production') {
+  // Set static folder
+  app.use(express.static('client/build'))
+
+  app.get('*', (req, res, next) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
+  })
+}
 
 // starts the server
 const server = app.listen(port, () => {
