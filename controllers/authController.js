@@ -17,26 +17,33 @@ const PostDB = require("../models/Post");
 
 exports.signin = async (req, res, next) => {
 
-  activeUser = await UserDB.findOne({ email: req.body.email });
-  !activeUser && res.status(404).json("user not found");
+  const rawUser = await UserDB.findOne({ email: req.body.email });
+  !rawUser && res.status(404).json("user not found");
 
-  const validPassword = await bcrypt.compare(req.body.password, activeUser.password);
+  const validPassword = await bcrypt.compare(req.body.password, rawUser.password);
   !validPassword && res.status(404).json("wrong password");
 
-  // --- 
+  // --- end of signin --
 
-  // console.log("\nfirst checkpoint for activeUser object:\n\n", activeUser)
+  // --- starting of remote state delivery --
+
+  // console.log("\nfirst checkpoint for rawUser object:\n\n", rawUser)
 
   //sanitizing the password
-  activeUser.password = undefined
-
+  const thisActiveUser = {
+    ...rawUser._doc,
+    _id: rawUser._doc._id.toString(),
+    password: undefined,
+  }
+  // console.log (thisActiveUser)
+  // console.log("user: ", thisActiveUser)
   //gets the posts for the user owner
-  const owner = await PostDB.find({ userId: activeUser._id });
+  const owner = await PostDB.find({ userId: rawUser._id });
   // console.log("\nprofile:\n\n", owner)
 
   //gets all the post of how client follows
   const followingPosts = await Promise.all(
-    activeUser.following.map((id) => PostDB.find({ userId: id }))
+    rawUser.following.map((id) => PostDB.find({ userId: id }))
   );
   // console.log("\nfollowingPosts:\n\n", followingPosts)
 
@@ -44,30 +51,32 @@ exports.signin = async (req, res, next) => {
   const collection = owner.concat(...followingPosts)
   // console.log("\collection:\n\n", collection)
 
-  const buildLib = await Promise.all(
-    collection.map(post => {
-     target = UserDB.findOne({ userId: post.userId })
-     target.password = undefined 
-     return target
-    }))
-
-const lib = buildLib.reduce((acc,curr)=>{ 
-  console.log("this is acc:", acc)
-  console.log("this is curr:", curr)
-  curr._id.includes(acc._id) ? acc : [...acc, curr]
+  const onlyIds = collection.map(post => post.userId).reduce(function (previousValue, currentValue) {
+    if (previousValue.indexOf(currentValue) === -1) {
+      previousValue.push(currentValue)
+    }
+    return previousValue
   }, [])
 
+  // console.log("\nonlyIds:", onlyIds)
+  // console.log("\nlibIds:", libIds)
 
 
-  console.log("\nshould look more like a map. this is lib:\n\n",lib)
 
-  
+  const findUsers = await Promise.all(
+    onlyIds.map(id => UserDB.findById(id))
+  )
 
-  const active = activeUser
+  const lib = findUsers.map(user => {
+    const { password, ...userRest } = user._doc
+    return userRest
+  })
+  // console.log("lib:\n", lib)
+
+  const active = thisActiveUser
 
   const remoteState = [{ active, lib }, { collection, owner, },]
   // console.log("\nlast checkpoint for remote state:\n\n", remoteState)
-
 
   res.status(200).json(remoteState);
 };

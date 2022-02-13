@@ -1,3 +1,47 @@
+// Sample data from DB
+// const sanitize = {
+// '$__': InternalCache {
+//   activePaths: StateMachine {
+//     paths: [Object],
+//     states: [Object],
+//     stateNames: [Array]
+//   },
+//   ownerDocument: undefined,
+//   isSubDocument: undefined,
+//   fullPath: undefined,
+//   emitter: EventEmitter {
+//     _events: [Object: null prototype] {},
+//     _eventsCount: 0,
+//     _maxListeners: 0,
+//     [Symbol(kCapture)]: false
+//   },
+//   strictMode: true,
+//   selected: {},
+//   _id: new ObjectId("62082c6baaef40bb2cc6f836")
+// },
+// '$isNew': false,
+// _doc: {
+//   _id: new ObjectId("62082c6baaef40bb2cc6f836"),
+//   gender: '',
+//   email: 'awse@qwerty.me',
+//   username: '@thisismy chit',
+//   password: '$2a$10$EVkIcQtj2gcnPqrRiD3mVOuRdCHyd6GgPc6OlUEBvHaS3y3CGl/7K',
+//   profilePicture: '',
+//   coverPicture: '',
+//   followers: [],
+//   following: [],
+//   isAdmin: false,
+//   badges: [],
+//   isAvailableToPractice: false,
+//   whenAvailableHours: [],
+//   createdAt: 2022-02-12T21:53:47.172Z,
+//   updatedAt: 2022-02-12T21:53:47.172Z,
+//   __v: 0
+// },
+// '$init': true,
+// password: undefined
+// }
+
 // Dummy data for Users, Posts, and Comments
 
 export const imgData = [
