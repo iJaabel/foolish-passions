@@ -14,6 +14,7 @@ export const userReducer = {
   pending: (state) => ({ ...state, pending: !state.pending }),
   rejected: (state, { payload }) => ({
     ...state,
+    pending: state.pending ? !state.pending : state.pending,
     error: payload,
   }),
 

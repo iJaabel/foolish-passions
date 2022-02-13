@@ -7,12 +7,3 @@
  * 
  ************/
 
-export const LoginStart = (credetials) => ({
-    type: "LOGIN_START",
-})
-export const LoginSuccess = (user) => ({
-    type: "LOGIN_START",
-})
-export const LoginFailure = (error) => ({
-    type: "LOGIN_START",
-})

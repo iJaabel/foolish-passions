@@ -15,13 +15,10 @@ import Routes from "./Routes";
 export default () => {
     // const state = store.getState()
     // console.log("app is starting up...\n This is state in Interactive layer:\n", state)
-    // const username = "Jane"
+    
     useEffect(() => {
         //All networking shall be called here and set to state
         // console.log("Interactive layer useEffect on component mount is running...")
-        // getTimelinePosts()
-        // getActiveUser(username);
-        // getProfilePosts(username)
         // console.log("api calls have ran, checking state on completion:\n", state)
         const excistingState = localStorage.getItem('user')
     }, []);
