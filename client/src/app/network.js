@@ -25,15 +25,15 @@ const loginEndPoint = `account/login`
 const registerEndPoint = `account/register`
 const postsTLEndPoint = `posts/timeline/`;
 // const postEndPoint = `posts/`
-const userEndPoint = `users/`;
+// const userEndPoint = `users/`;
 const profileEndPoint = `profile/`;
 
 // const likes = `like/`
 // const follow = `follow/`
 // const unfollow = `unfollow/`
 
-const byUsername = `?username=`
-const byUserId = `?userId=`
+// const byUsername = `?username=`
+// const byUserId = `?userId=`
 
 // const samplePostId = `61be1f53392116a72bb354a8`;
 const sampleUserId = `61be16d1a17c985d2a2f2651`;
@@ -190,58 +190,58 @@ export async function getProfileById({ userId }) {
 }
 
 // *** Users ***
-export async function createUser({ user }) {
-  const unsubscribe = store.subscribe(() => {
-    console.log("State on update: \n", store.getState())
-  })
+// export async function createUser({ user }) {
+//   const unsubscribe = store.subscribe(() => {
+//     console.log("State on update: \n", store.getState())
+//   })
 
-  unsubscribe()
-}
+//   unsubscribe()
+// }
 
-export async function getActiveUser(username) {
-  const unsubscribe = store.subscribe(() => {
-    console.log("State after dispatch:\n", store.getState());
-  });
-  if (username === undefined || null || NaN) {
-    unsubscribe()
-    return
-  }
-  console.log()
-  try {
-    store.dispatch({ type: "user/isPending" });
-    const res = await axios.get(api + userEndPoint + byUsername + username);
-    if (res) store.dispatch({ type: "user/storeActiveUser", payload: res.data });
-    store.dispatch({ type: "user/isPending" });
+// export async function getActiveUser(username) {
+//   const unsubscribe = store.subscribe(() => {
+//     console.log("State after dispatch:\n", store.getState());
+//   });
+//   if (username === undefined || null || NaN) {
+//     unsubscribe()
+//     return
+//   }
+//   console.log()
+//   try {
+//     store.dispatch({ type: "user/isPending" });
+//     const res = await axios.get(api + userEndPoint + byUsername + username);
+//     if (res) store.dispatch({ type: "user/storeActiveUser", payload: res.data });
+//     store.dispatch({ type: "user/isPending" });
 
-  } catch (error) {
-    store.dispatch({ type: "user/pendingRejected", payload: error });
+//   } catch (error) {
+//     store.dispatch({ type: "user/pendingRejected", payload: error });
 
-    console.error(error.name, error.message);
-    store.dispatch({ type: "user/isPending" });
-  }
-  unsubscribe();
-}
+//     console.error(error.name, error.message);
+//     store.dispatch({ type: "user/isPending" });
+//   }
+//   unsubscribe();
+// }
 
-export async function getUserById({ userId }) {
-  const unsubscribe = store.subscribe(() => {
-    console.log("State after dispatch:\n", store.getState());
-  });
-  if (userId === undefined || null || NaN) {
-    unsubscribe();
-    return;
-  }
-  store.dispatch({ type: "user/isPending" });
-  try {
-    const res = await axios.get(api + userEndPoint + byUserId + userId);
-    store.dispatch({ type: "user/pendingSuccess", payload: res.data });
+// export async function getUserById({ userId }) {
+//   const unsubscribe = store.subscribe(() => {
+//     console.log("State after dispatch:\n", store.getState());
+//   });
+//   if (userId === undefined || null || NaN) {
+//     unsubscribe();
+//     return;
+//   }
+//   store.dispatch({ type: "user/isPending" });
+//   try {
+//     const res = await axios.get(api + userEndPoint + byUserId + userId);
+//     store.dispatch({ type: "user/pendingSuccess", payload: res.data });
 
-    const state = store.getState();
-    return state.user;
-  } catch (error) {
-    store.dispatch({ type: "post/pendingRejected", payload: error });
+//     const state = store.getState();
+//     return state.user;
+//   } catch (error) {
+//     store.dispatch({ type: "post/pendingRejected", payload: error });
 
-    console.error(error.name, error.message);
-  }
+//     console.error(error.name, error.message);
+//   }
 
-  unsubscribe();
-}
+//   unsubscribe();
+// }

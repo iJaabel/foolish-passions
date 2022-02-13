@@ -16,6 +16,7 @@ export default function Post({ post }) {
   const lib = useSelector((state) => state.user.lib);
   const userWhoPosted = lib.filter((user) => user.userId === userId)
   console.log("userWhoPosted:\n", userWhoPosted)
+  console.log("libs:\n", lib)
 
   const likeHandler = () => {
     setLike(isLiked ? like - 1 : like + 1);
