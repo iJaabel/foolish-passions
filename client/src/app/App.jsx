@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import Routes from "./Routes";
-// import { getActiveUser, getProfilePosts, getTimelinePosts } from "./network"
-// import { store } from "./index"
+import { store } from "./index"
 
 /** High level interaction layer
  * When the app renders,
@@ -9,18 +8,27 @@ import Routes from "./Routes";
  * gets the current user
  * gets the timeline post
  * gets the profile posts
- * 
  */
 
 export default () => {
-    // const state = store.getState()
+    // All networking shall be called here and set to state
     // console.log("app is starting up...\n This is state in Interactive layer:\n", state)
-    
+
     useEffect(() => {
-        //All networking shall be called here and set to state
-        // console.log("Interactive layer useEffect on component mount is running...")
-        // console.log("api calls have ran, checking state on completion:\n", state)
-        const excistingState = localStorage.getItem('user')
+        // Handling the cookies
+        console.log("Interactive layer firing off onMount:\n", JSON.parse(localStorage.getItem('state')))
+        if (localStorage.getItem('state')) {
+            store.dispatch({ type: "user/pending" })
+            store.dispatch({ type: "post/pending" })
+            const preLoad = JSON.parse(localStorage.getItem('state'))
+
+            store.dispatch({ type: "user/storeActiveUser", payload: preLoad.user.active })
+            store.dispatch({ type: "user/storeLib", payload: preLoad.user.lib })
+            store.dispatch({ type: "post/storeOwner", payload: preLoad.post.owner })
+            store.dispatch({ type: "post/storeCollection", payload: preLoad.post.collection })
+        }
+
     }, []);
+
     return (<Routes />)
 }

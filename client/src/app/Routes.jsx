@@ -1,5 +1,4 @@
-import React, {useState} from "react";
-import { useSelector } from "react-redux"
+import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import {
   About,
@@ -14,10 +13,14 @@ import {
 
 export default () => {
   const [isActive, setActive] = useState(false)
-  const activeUser = useSelector(state => state.user.activeUser)
-  // const unsubscribe = store.subscribe(() => {
-  //   console.log("state after dispatch in interactive layer", store.getState())
-  // })
+
+  useEffect(() => {
+    console.log("useEffect in routes fired off\n", "\nthis is routes state:\n", isActive)
+    if (localStorage.getItem('state') !== false || undefined || null || NaN) {
+      setActive(true)
+    }
+  }, [isActive, setActive])
+
   return (
     <Router>
       <Switch>

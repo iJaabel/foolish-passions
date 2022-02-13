@@ -5,7 +5,7 @@ import { Search, Person, Chat, Notifications } from "@material-ui/icons";
 import "./Header.css";
 
 export default function HeaderV3() {
-  const activeUser = useSelector(state => state.user.activeUser)
+  const activeUser = useSelector(state => state.user.active)
   return (
     <div className="topbarContainer">
       <div className="topbarLeft">

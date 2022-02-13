@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { getUserById } from "../../../app";
+// import { getUserById } from "../../../app";
 import { MoreVert } from "@material-ui/icons";
 import moment from "moment";
 import "./Post.css";
@@ -13,42 +13,28 @@ export default function Post({ post }) {
   const { userId } = post;
   console.log("what is in the post pass down?:\n", post)
 
-  const userDataIsPending = useSelector((state) => state.user.pending);
-  const userWhoPosted = useSelector((state) => state.user.data);
+  const lib = useSelector((state) => state.user.lib);
+  const userWhoPosted = lib.filter((user) => user.userId === userId)
+  console.log("userWhoPosted:\n", userWhoPosted)
 
   const likeHandler = () => {
     setLike(isLiked ? like - 1 : like + 1);
     setIsLike(!isLiked);
   };
 
-  useEffect(() => {
-    getUserById(userId);
-  }, [userId]);
-
-  // useEffect(
-  //   () =>
-  //     console.log(
-  //       "on mount in post component, we see the post object:\n",
-  //       post,
-  //       "\n and we take a look at the user:\n",
-  //       userWhoPosted
-  //     ),
-  //   [post, userWhoPosted]
-  // );
-
-  return (
+    return (
     <div className="postContainer">
       <div className="postWrapper">
         <div className="postTop">
           <div className="postTopLeft">
-            <Link to={`profile/${userDataIsPending ? null : userWhoPosted.username}`}>
+            <Link to={`profile/${userWhoPosted.username}`}>
               <img
                 className="postProfileImg"
-                src={userDataIsPending ? null : userWhoPosted.profilePicture || "/no-avatar.png"}
+                src={userWhoPosted.profilePicture || "/no-avatar.png"}
                 alt="post profile"
               />
             </Link>
-            <span className="postUsername">{userDataIsPending ? null : userWhoPosted.username}</span>
+            <span className="postUsername">{userWhoPosted.username}</span>
             <span className="postDate">{moment(post.createdAt).fromNow()}</span>
           </div>
           <div className="postTopRight">
@@ -79,7 +65,7 @@ export default function Post({ post }) {
           </div>
           <div className="postBottomRight">
             <span className="postCommentText">
-              {post.comments.length} Comments
+              {post.comments?.length} Comments
             </span>
           </div>
         </div>

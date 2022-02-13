@@ -62,9 +62,18 @@ const sampleUserId = `61be16d1a17c985d2a2f2651`;
 
 export async function login(credentials) {
 
-
   const unsubscribe = store.subscribe(() => {
     console.log("state after dispatch", store.getState())
+
+    const current = store.getState()
+    if (current !== undefined || null) {
+      // console.log("setItem is firing off...")
+      localStorage.clear()
+      localStorage.setItem('state', JSON.stringify(current))
+    }
+
+    // console.log("\nthis is excistingState:\n", excistingState)
+    // console.log("\nattempting getting the user:\n", excistingState.user)
   })
 
   if (credentials === undefined || null || NaN) {

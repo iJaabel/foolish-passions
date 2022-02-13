@@ -4,7 +4,7 @@ import { Header as Topbar, Leftbar, Rightbar, Feed } from "../../components";
 import "./home.css";
 
 export default () => {
-  const data = useSelector((state) => state.user.posts.timeline);
+  const data = useSelector((state) => state.post.collection);
   const isPending = useSelector((state) => state.post.pending);
 
   return (
