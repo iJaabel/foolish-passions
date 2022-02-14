@@ -1,5 +1,5 @@
 import React from "react";
-import { CloseFriend } from "../../../components";
+import { CloseFriend } from "../CloseFriend/CloseFriend";
 import { RssFeed, WorkOutline, Event, Chat } from "@material-ui/icons";
 import { Users } from "../../../dummy/data";
 import "./Leftbar.css";

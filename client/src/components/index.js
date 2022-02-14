@@ -1,4 +1,4 @@
-export { default as CloseFriend } from "./custom/CloseFriend/CloseFriend";
+// export { default as CloseFriend } from "./custom/CloseFriend/CloseFriend";
 export { default as Feed } from "./custom/Feed/Feed";
 export { default as Footer } from "./custom/Footer/Footer";
 export { default as Header } from "./custom/Header/HeaderV3";
