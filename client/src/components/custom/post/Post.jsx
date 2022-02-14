@@ -7,23 +7,23 @@ import moment from "moment";
 import "./Post.css";
 
 export default function Post({ post }) {
-  const [like, setLike] = useState(post.likes.length);
+  const [like, setLike] = useState(post.likes?.length || post.reactions?.length);
   const [isLiked, setIsLike] = useState(false);
 
   const { userId } = post;
   console.log("what is in the post pass down?:\n", post)
 
   const lib = useSelector((state) => state.user.lib);
-  const userWhoPosted = lib.filter((user) => user.userId === userId)
+  const [userWhoPosted] = lib.filter((user) => user._id === userId)
   console.log("userWhoPosted:\n", userWhoPosted)
-  console.log("libs:\n", lib)
+  // console.log("libs:\n", lib)
 
   const likeHandler = () => {
     setLike(isLiked ? like - 1 : like + 1);
     setIsLike(!isLiked);
   };
 
-    return (
+  return (
     <div className="postContainer">
       <div className="postWrapper">
         <div className="postTop">
@@ -44,7 +44,7 @@ export default function Post({ post }) {
         </div>
         <div className="postCenter">
           <span className="postText">{post?.body || post?.desc}</span>
-          {/* <img className="postImg" src={post?.img} alt="in post" /> */}
+          {/* {post.img ? <img className="postImg" src={post.img} alt="in post" /> : null} */}
         </div>
         <div className="postBottom">
           <div className="postBottomLeft">

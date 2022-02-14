@@ -6,6 +6,8 @@ import "./Header.css";
 
 export default function HeaderV3() {
   const activeUser = useSelector(state => state.user.active)
+  // console.log("what is in activeUser inside Header\n:", activeUser)
+
   return (
     <div className="topbarContainer">
       <div className="topbarLeft">
