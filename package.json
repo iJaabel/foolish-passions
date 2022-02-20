@@ -11,8 +11,8 @@
     "client-install": "npm i --prefix client",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm i --prefix client && npm run build --prefix client"
   },
-  "engines" : { 
-    "node" : "16.5.0"
+  "engines": {
+    "node": "16.5.0"
   },
   "author": "Jaabl",
   "license": "ISC",
@@ -25,5 +25,8 @@
     "mongoose": "^6.1.2",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.15"
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-export-default-from": "^7.16.7"
   }
 }
