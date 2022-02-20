@@ -1,5 +1,5 @@
 import React from "react";
-import { Share, Post } from "../../../components";
+import { Share, Post } from "../..";
 import "./Feed.css";
 
 // takes in user name and returns a feed with all post
