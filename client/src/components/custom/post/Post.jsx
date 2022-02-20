@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 // import { getUserById } from "../../../app";
 import { MoreVert } from "@material-ui/icons";
 import moment from "moment";
-import "./Post.css";
+import "./post.css";
 
 export default function Post({ post }) {
   const [like, setLike] = useState(post.likes?.length || post.reactions?.length);

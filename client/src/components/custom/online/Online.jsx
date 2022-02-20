@@ -1,5 +1,5 @@
 import React from "react";
-import "./Online.css";
+import "./online.css";
 
 export default function Online({ user }) {
   return (
