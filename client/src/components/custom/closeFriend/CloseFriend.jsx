@@ -1,5 +1,5 @@
 import React from 'react'
-import "./CloseFriend.css";
+import "./closeFriend.css";
 
 export default ({ user }) => (
   <li className="leftbarFriend">
