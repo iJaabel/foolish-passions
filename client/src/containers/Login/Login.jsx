@@ -14,6 +14,7 @@ export default function Login() {
   const handleSubmit = (e) => {
     e.preventDefault()
     // console.log("handleSubmit started...")
+    // console.log("submitted")
     const safe = email.current.value.toLowerCase()
     login({ email: safe, password: password.current.value })
     // console.log("submitted \n safe:\n", safe, "\n password:\n", password.current.value, "\n email:\n", email.current.value)

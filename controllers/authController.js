@@ -51,21 +51,16 @@ exports.signin = async (req, res, next) => {
   const collection = owner.concat(...followingPosts)
   // console.log("\collection:\n\n", collection)
 
-  const onlyIds = collection.map(post => post.userId).reduce(function (previousValue, currentValue) {
-    if (previousValue.indexOf(currentValue) === -1) {
-      previousValue.push(currentValue)
-    }
-    return previousValue
-  }, [])
+  const listOfIds = activeUser.following.concat(activeUser.followers)
+ 
+  console.log("what is in the listOfIds?:\n\n", listOfIds)
 
-  // console.log("\nonlyIds:", onlyIds)
-  // console.log("\nlibIds:", libIds)
+  const lib = await Promise.all(listOfIds.map(id => UserDB.findById(id)))
+  for (const obj of lib) obj.password = undefined
 
+  console.log("\nshould look more like a map. this is lib:\n\n", lib)
 
 
-  const findUsers = await Promise.all(
-    onlyIds.map(id => UserDB.findById(id))
-  )
 
   const lib = findUsers.map(user => {
     const { password, ...userRest } = user._doc

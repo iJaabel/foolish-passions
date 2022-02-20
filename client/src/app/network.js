@@ -61,7 +61,10 @@ const sampleUserId = `61be16d1a17c985d2a2f2651`;
 // }
 
 export async function login(credentials) {
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
   const unsubscribe = store.subscribe(() => {
     console.log("state after dispatch", store.getState())
 
@@ -88,7 +91,7 @@ export async function login(credentials) {
 
     const res = await axios.post(api + loginEndPoint, credentials)
 
-    // console.log("\nwhat is in the res object?\n\n", res)
+    console.log("\nwhat is in the res object?\n\n", res)
     store.dispatch({ type: "user/storeActiveUser", payload: res.data[0].active })
     store.dispatch({ type: "user/storeLib", payload: res.data[0].lib })
     store.dispatch({ type: "post/storeOwner", payload: res.data[1].owner })
