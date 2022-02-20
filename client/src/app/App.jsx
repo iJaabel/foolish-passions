@@ -23,7 +23,7 @@ export default () => {
         // getActiveUser(username);
         // getProfilePosts(username)
         // console.log("api calls have ran, checking state on completion:\n", state)
-        const excistingState = localStorage.getItem('user')
+        // const excistingState = localStorage.getItem('user')
     }, []);
     return (<Routes />)
 }

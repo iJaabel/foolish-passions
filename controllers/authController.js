@@ -44,24 +44,16 @@ exports.signin = async (req, res, next) => {
   const collection = owner.concat(...followingPosts)
   // console.log("\collection:\n\n", collection)
 
-  const buildLib = await Promise.all(
-    collection.map(post => {
-     target = UserDB.findOne({ userId: post.userId })
-     target.password = undefined 
-     return target
-    }))
+  const listOfIds = activeUser.following.concat(activeUser.followers)
+ 
+  console.log("what is in the listOfIds?:\n\n", listOfIds)
 
-const lib = buildLib.reduce((acc,curr)=>{ 
-  console.log("this is acc:", acc)
-  console.log("this is curr:", curr)
-  curr._id.includes(acc._id) ? acc : [...acc, curr]
-  }, [])
+  const lib = await Promise.all(listOfIds.map(id => UserDB.findById(id)))
+  for (const obj of lib) obj.password = undefined
+
+  console.log("\nshould look more like a map. this is lib:\n\n", lib)
 
 
-
-  console.log("\nshould look more like a map. this is lib:\n\n",lib)
-
-  
 
   const active = activeUser
 

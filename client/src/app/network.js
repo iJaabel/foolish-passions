@@ -61,8 +61,6 @@ const sampleUserId = `61be16d1a17c985d2a2f2651`;
 // }
 
 export async function login(credentials) {
-
-
   const unsubscribe = store.subscribe(() => {
     console.log("state after dispatch", store.getState())
   })
@@ -79,11 +77,11 @@ export async function login(credentials) {
 
     const res = await axios.post(api + loginEndPoint, credentials)
 
-    console.log("\nwhat is in the res object?\n\n",res)
+    console.log("\nwhat is in the res object?\n\n", res)
     store.dispatch({ type: "user/storeActiveUser", payload: res.data[0].active })
-    store.dispatch({type:"user/storeLib", payload:res.data[0].lib})
-    store.dispatch({type:"post/storeOwner", payload: res.data[1].owner})
-    store.dispatch({type:"post/storeCollection", payload: res.data[1].collection})
+    store.dispatch({ type: "user/storeLib", payload: res.data[0].lib })
+    store.dispatch({ type: "post/storeOwner", payload: res.data[1].owner })
+    store.dispatch({ type: "post/storeCollection", payload: res.data[1].collection })
 
   } catch (error) {
 
@@ -122,14 +120,14 @@ export async function getTimelinePosts() {
   });
 
   try {
-  store.dispatch({ type: "user/isPending" });
+    store.dispatch({ type: "user/isPending" });
     const res = await axios.get(api + postsTLEndPoint + sampleUserId);
     store.dispatch({ type: "user/storeTimelinePosts", payload: res.data });
-  store.dispatch({ type: "user/isPending" });
+    store.dispatch({ type: "user/isPending" });
   } catch (error) {
     store.dispatch({ type: "user/pendingRejected", payload: error });
     console.error(error.name, error.message);
-  store.dispatch({ type: "user/isPending" });
+    store.dispatch({ type: "user/isPending" });
   }
 
   unsubscribe();
@@ -147,15 +145,15 @@ export async function getProfilePosts(username) {
 
 
   try {
-  store.dispatch({ type: "user/isPending" });
+    store.dispatch({ type: "user/isPending" });
     const res = await axios.get(api + profileEndPoint + username);
     // console.log("what is response in getProfilePosts: \n", res.data)
     if (res) store.dispatch({ type: "user/storeProfilePosts", payload: res.data });
-  store.dispatch({ type: "user/isPending" });
+    store.dispatch({ type: "user/isPending" });
   } catch (error) {
     store.dispatch({ type: "user/pendingRejected", payload: error });
     console.error(error.name, error.message);
-  store.dispatch({ type: "user/isPending" });
+    store.dispatch({ type: "user/isPending" });
   }
   unsubscribe();
 }
@@ -199,16 +197,16 @@ export async function getActiveUser(username) {
   }
   console.log()
   try {
-  store.dispatch({ type: "user/isPending" });
+    store.dispatch({ type: "user/isPending" });
     const res = await axios.get(api + userEndPoint + byUsername + username);
     if (res) store.dispatch({ type: "user/storeActiveUser", payload: res.data });
-  store.dispatch({ type: "user/isPending" });
+    store.dispatch({ type: "user/isPending" });
 
   } catch (error) {
     store.dispatch({ type: "user/pendingRejected", payload: error });
 
     console.error(error.name, error.message);
-  store.dispatch({ type: "user/isPending" });
+    store.dispatch({ type: "user/isPending" });
   }
   unsubscribe();
 }

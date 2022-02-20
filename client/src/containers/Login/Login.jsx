@@ -13,8 +13,8 @@ export default function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log("submitted")
-      const safe = email.current.value.toLowerCase()
+    // console.log("submitted")
+    const safe = email.current.value.toLowerCase()
     login({ email: safe, password: password.current.value })
   }
   return (
@@ -30,12 +30,12 @@ export default function Login() {
           <form className="loginBox" onSubmit={handleSubmit}>
             <input placeholder="Email" type="email" required className="loginInput" ref={email} />
             <input placeholder="Password" type="password" required minLength="6" className="loginInput" ref={password} />
-            <button className="loginButton" type="submit" disabled={isPending}>{isPending ? <CircularProgress color="white" size="20px" /> : "Log In"}</button>
+            <button className="loginButton" type="submit" disabled={isPending}>{isPending ? <CircularProgress primary="white" size="20px" /> : "Log In"}</button>
             <span className="loginForgot">Forgot Password?</span>
-            <Link to={`/register`} > 
-            <button className="loginRegisterButton">
-              {isPending ? <CircularProgress color="white" size="20px" /> : "Create a New Account"}
-            </button>
+            <Link to={`/register`} >
+              <button className="loginRegisterButton">
+                {isPending ? <CircularProgress primary="white" size="20px" /> : "Create a New Account"}
+              </button>
             </Link>
           </form>
         </div>
