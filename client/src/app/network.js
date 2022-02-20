@@ -61,10 +61,6 @@ const sampleUserId = `61be16d1a17c985d2a2f2651`;
 // }
 
 export async function login(credentials) {
-<<<<<<< HEAD
-
-=======
->>>>>>> dev
   const unsubscribe = store.subscribe(() => {
     console.log("state after dispatch", store.getState())
 
