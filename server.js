@@ -44,6 +44,8 @@ app.use((req, res, next) => {
 
 const api = require("./api");
 app.use(api);
+const client = require("./client/src")
+app.Router().get("/", client)
 
 // --- *** ---
 
