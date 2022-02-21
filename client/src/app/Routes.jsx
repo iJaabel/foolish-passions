@@ -15,7 +15,7 @@ export default () => {
   const [isActive, setActive] = useState(false)
 
   useEffect(() => {
-    console.log("useEffect in routes fired off\n", "\nthis is routes state:\n", isActive)
+    // console.log("useEffect in routes fired off\n", "\nthis is routes state:\n", isActive)
     if (localStorage.getItem('state')) {
       setActive(true)
     }

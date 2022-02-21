@@ -16,7 +16,7 @@ export default () => {
 
     useEffect(() => {
         // Handling the cookies
-        console.log("Interactive layer firing off onMount...\nThis is what is left in localStorage:\n", JSON.parse(localStorage.getItem('state')))
+        // console.log("Interactive layer firing off onMount...\nThis is what is left in localStorage:\n", JSON.parse(localStorage.getItem('state')))
         if (localStorage.getItem('state')) {
             store.dispatch({ type: "user/pending" })
             store.dispatch({ type: "post/pending" })

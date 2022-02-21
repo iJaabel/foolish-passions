@@ -11,11 +11,12 @@ export default function Post({ post }) {
   const [isLiked, setIsLike] = useState(false);
 
   const { userId } = post;
-  console.log("what is in the post pass down?:\n", post)
+  // console.log("what is in the post pass down?:\n", post)
 
   const lib = useSelector((state) => state.user.lib);
-  const [userWhoPosted] = lib.filter((user) => user._id === userId)
-  console.log("userWhoPosted:\n", userWhoPosted)
+  const userWhoPosted = lib.filter((user) => user._id === userId)
+  const { username, profilePicture } = userWhoPosted
+  // console.log("userWhoPosted:\n", userWhoPosted)
   // console.log("libs:\n", lib)
 
   const likeHandler = () => {
@@ -28,14 +29,14 @@ export default function Post({ post }) {
       <div className="postWrapper">
         <div className="postTop">
           <div className="postTopLeft">
-            <Link to={`profile/${userWhoPosted.username}`}>
+            <Link to={`profile/${username}`}>
               <img
                 className="postProfileImg"
-                src={userWhoPosted.profilePicture || "/no-avatar.png"}
+                src={profilePicture || "/no-avatar.png"}
                 alt="post profile"
               />
             </Link>
-            <span className="postUsername">{userWhoPosted.username}</span>
+            <span className="postUsername">{username}</span>
             <span className="postDate">{moment(post.createdAt).fromNow()}</span>
           </div>
           <div className="postTopRight">
