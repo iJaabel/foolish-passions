@@ -7,63 +7,64 @@ const PostDB = require("../models/Post");
 * This is where the timeline logic is place. 
 * must rearrange these so that it reflects
 * clean Architecture.
-* userIDs:
-* Tom: 61fe02d5c66d6eadee1de28e
-* 61bcafe5fe354c9ba9e25316
- * 61bcc152c2229e29b52366cb
- * 
+* 
 */
 
 
 exports.signin = async (req, res, next) => {
-
   const rawUser = await UserDB.findOne({ email: req.body.email });
   !rawUser && res.status(404).json("user not found");
+  // console.log("\nfirst checkpoint for rawUser object:\n\n", rawUser)
 
   const validPassword = await bcrypt.compare(req.body.password, rawUser.password);
   !validPassword && res.status(404).json("wrong password");
 
-  // --- end of signin --
+  /**
+   * end of signin validation above
+   * send an updated state to client
+   * without sensitive data
+   */
 
-  // --- starting of remote state delivery --
+  // *** *** *** *** *** *** *** *** *** *** *** *** *** 
 
-  // console.log("\nfirst checkpoint for rawUser object:\n\n", rawUser)
-
-  //sanitizing the password
-  const thisActiveUser = {
-    ...rawUser._doc,
-    _id: rawUser._doc._id.toString(),
-    password: undefined,
-  }
-  // console.log (thisActiveUser)
-  // console.log("user: ", thisActiveUser)
-  //gets the posts for the user owner
+  //get a current array of all validatedUser's post as owner
   const owner = await PostDB.find({ userId: rawUser._id });
   // console.log("\nprofile:\n\n", owner)
 
-  //gets all the post of how client follows
+  //get all the posts from validatedUser's following
   const followingPosts = await Promise.all(
     rawUser.following.map((id) => PostDB.find({ userId: id }))
   );
   // console.log("\nfollowingPosts:\n\n", followingPosts)
 
-  //creates collection post first render...
+  //combine validatedUser's post with thier following's post as collection
   const collection = owner.concat(...followingPosts)
   // console.log("\collection:\n\n", collection)
 
-  const listOfIds = thisActiveUser.following.concat(thisActiveUser.followers)
- 
-  // console.log("what is in the listOfIds?:\n\n", listOfIds)
+  // *** *** *** *** *** *** *** *** *** *** *** *** *** 
 
+  const validatedUser = {
+    ...rawUser._doc,
+    _id: rawUser._doc._id.toString(),
+    password: undefined,
+  }
+  // console.log("user: ", validatedUser)
+
+  //collect a list of all the userIds of following and followers
+  const listOfIds = validatedUser.following.concat(validatedUser.followers)
   const lib = await Promise.all(listOfIds.map(id => UserDB.findById(id)))
   for (const obj of lib) obj.password = undefined
+  const active = validatedUser
+  // console.log("what is in the listOfIds?:\n\n", listOfIds)
+  // console.log("\nshould look more like a map. this is lib:\n\n", lib)
 
-  console.log("\nshould look more like a map. this is lib:\n\n", lib)
+  // *** *** *** *** *** *** *** *** *** *** *** *** *** 
 
-  const active = thisActiveUser
-
+  // put everything together as remote state [{ user }, { post }]
   const remoteState = [{ active, lib }, { collection, owner, },]
   // console.log("\nlast checkpoint for remote state:\n\n", remoteState)
+
+  // *** *** *** *** *** *** *** *** *** *** *** *** *** 
 
   res.status(200).json(remoteState);
 };
