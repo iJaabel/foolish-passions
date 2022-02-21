@@ -25,6 +25,7 @@ mongoose.connect(
   () => console.log("🕹️  DB connected 🛡️")
 );
 
+
 // CORS Header Handler (Mostly handled by Helmet. This gives us more customability)
 app.use((req, res, next) => {
   // Allows all "*" webpages to access this API, change it to just the domain later
