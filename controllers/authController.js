@@ -28,18 +28,18 @@ exports.signin = async (req, res, next) => {
   // *** *** *** *** *** *** *** *** *** *** *** *** *** 
 
   //get a current array of all validatedUser's post as owner
-  const owner = await PostDB.find({ userId: rawUser._id });
-  // console.log("\nprofile:\n\n", owner)
-
+  //combine validatedUser's post with thier following's post as collection
   //get all the posts from validatedUser's following
+
+  const owner = await PostDB.find({ userId: rawUser._id });
   const followingPosts = await Promise.all(
     rawUser.following.map((id) => PostDB.find({ userId: id }))
   );
-  // console.log("\nfollowingPosts:\n\n", followingPosts)
-
-  //combine validatedUser's post with thier following's post as collection
   const collection = owner.concat(...followingPosts)
-  // console.log("\collection:\n\n", collection)
+
+  console.log("\nprofile:\n\n", owner)
+  console.log("\nfollowingPosts:\n\n", followingPosts)
+  console.log("\collection:\n\n", collection)
 
   // *** *** *** *** *** *** *** *** *** *** *** *** *** 
 
@@ -48,21 +48,22 @@ exports.signin = async (req, res, next) => {
     _id: rawUser._doc._id.toString(),
     password: undefined,
   }
-  // console.log("user: ", validatedUser)
+  console.log("user: ", validatedUser)
 
   //collect a list of all the userIds of following and followers
   const listOfIds = validatedUser.following.concat(validatedUser.followers)
   const lib = await Promise.all(listOfIds.map(id => UserDB.findById(id)))
   for (const obj of lib) obj.password = undefined
   const active = validatedUser
-  // console.log("what is in the listOfIds?:\n\n", listOfIds)
-  // console.log("\nshould look more like a map. this is lib:\n\n", lib)
+
+  console.log("what is in the listOfIds?:\n\n", listOfIds)
+  console.log("\nshould look more like a map. this is lib:\n\n", lib)
 
   // *** *** *** *** *** *** *** *** *** *** *** *** *** 
 
   // put everything together as remote state [{ user }, { post }]
   const remoteState = [{ active, lib }, { collection, owner, },]
-  // console.log("\nlast checkpoint for remote state:\n\n", remoteState)
+  console.log("\nlast checkpoint for remote state:\n\n", remoteState)
 
   // *** *** *** *** *** *** *** *** *** *** *** *** *** 
 
