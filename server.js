@@ -66,10 +66,11 @@ app.use((error, req, res, next) => {
 
 // Serve static assets if in production
 // Set static folder
-// if (process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'))
+  app.get('/', (req, res, next) => res.sendFile(path.join(__dirname+'client/build/index.html')))
   app.get('*', (req, res, next) => res.sendFile(path.join(__dirname+'/client/build/index.html')))
-// }
+}
 
 // starts the server
 const server = app.listen(port, () => {
